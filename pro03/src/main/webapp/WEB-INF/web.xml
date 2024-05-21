@@ -47,7 +47,7 @@
 		<filter-name>httpMethodFilter</filter-name>
 		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
 	</filter>
-	<!-- 필터 기능 탑재 -->
+	<!-- 해당 내용 접근 시 로그인이 필요하도록 필터 기능 탑재 -->
 	<filter>
 		<filter-name>loginCheckFilter</filter-name>
 		<filter-class>com.ibcompany.filter.LoginCheckFilter</filter-class>
@@ -62,6 +62,8 @@
 	</filter-mapping>
 	<filter-mapping>
 		<filter-name>loginCheckFilter</filter-name>
-		<url-pattern>/bod/*</url-pattern>
+		<url-pattern>/sales/*</url-pattern>
+		<url-pattern>/admin/*</url-pattern>
+		<url-pattern>/board/*</url-pattern>
 	</filter-mapping>    
 </web-app>

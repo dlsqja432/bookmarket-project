@@ -27,7 +27,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formatDate);
 		model.addAttribute("author", "장인범");
-		model.addAttribute("company", "파람소프트");
+		model.addAttribute("company", "해태제과");
 		
 		return "home";
 	}

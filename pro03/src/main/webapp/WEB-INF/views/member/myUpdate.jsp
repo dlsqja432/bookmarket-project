@@ -42,44 +42,44 @@
                         <tbody>
                         <tr>
                             <th><label for="id">아이디</label></th>
-                            <td><input type="text" name="id" id="id" size="100" class="single100" value="${cus.id }" readonly required>
+                            <td><input type="text" name="id" id="id" size="100" class="single100" value="${memb.id }" readonly required>
                             </td>
                         </tr>
                         <tr>
                             <th><label for="pw">비밀번호</label></th>
-                            <td><input type="password" name="pw" id="pw"  class="single100" value="" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                            <td><input type="password" name="pw" id="pw"  class="single100" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
                                 <p>(최소 8자리에서 최대 16자리까지, 숫자, 영문 대소문자, 특수문자가 각 1 문자 이상 포함되어야 함)</p>
                             </td>
                         </tr>
                         <tr>
                             <th><label for="pw2">비밀번호 확인</label></th>
-                            <td><input type="password" name="pw2" id="pw2"  class="single100" value="" required></td>
+                            <td><input type="password" name="pw2" id="pw2"  class="single100" required></td>
                         </tr>
                         <tr>
                             <th><label for="name">이름</label></th>
-                            <td><input type="text" name="name" id="name" class="single100"  value="${cus.name }" required></td>
+                            <td><input type="text" name="name" id="name" class="single100"  value="${memb.name }" required></td>
                         </tr>
                         <tr>
                             <th><label for="email">이메일</label></th>
-                            <td><input type="email" name="email" id="email" class="single100" value="${cus.email }" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required></td>
+                            <td><input type="email" name="email" id="email" class="single100" value="${memb.email }" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required></td>
                         </tr>
                         <tr>
                             <th><label for="tel">전화번호</label></th>
-                            <td><input type="tel" name="tel" id="tel" class="single100"  value="${cus.tel }" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" required></td>
+                            <td><input type="tel" name="tel" id="tel" class="single100"  value="${memb.tel }" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" required></td>
                         </tr>
                         <tr>
                             <th><label for="" onclick="findAddr()">주소</label></th>
                             <td>
                                 <input type="text" name="addr1" id="addr1" class="single100" value="${addr1 }"><br>
                                 <input type="text" name="addr2" id="addr2" class="single100" value="${addr2 }"><br>
-                                <input type="text" name="postcode" id="postcode"  class="single40" value="${cus.postcode }">
+                                <input type="text" name="postcode" id="postcode"  class="single40" value="${memb.postcode }">
                                 <input type="button" value="주소찾기" onclick="findAddr()" class="btn btn-primary">
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
                                 <input type="submit" class="button btn-writer" value="회원정보수정">
-                                <a href="${path1 }/custom/myInfo.do" class="button btn-primary">취소</a>
+                                <a href="${path1 }/member/myInfo.do" class="button btn-primary">취소</a>
                             </td>
                         </tr>
                         </tbody>

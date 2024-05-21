@@ -34,43 +34,55 @@
                     <tbody>
 	                    <tr>
 	                        <th>아이디</th>
-	                        <td>${cus.id }</td>
-	                        </td>
+	                        <td>${memb.id }</td>
 	                    </tr>
 	                    <tr>
 	                        <th>비밀번호</th>
-	                        <td>********</p>
-	                        </td>
+	                        <td>********</td>
 	                    </tr>
 	                    <tr>
 	                        <th>이름</th>
-	                        <td>${cus.name }</td>
+	                        <td>${memb.name }</td>
 	                    </tr>
 	                    <tr>
 	                        <th>이메일</th>
-	                        <td>${cus.email }</td>
+	                        <td>${memb.email }</td>
 	                    </tr>
 	                    <tr>
 	                        <th>전화번호</th>
-	                        <td>${cus.tel }</td>
+	                        <td>${memb.tel }</td>
 	                    </tr>
 	                    <tr>
 	                        <th>주소</th>
 	                        <td>
-	                            ${cus.addr }
+	                            ${memb.addr }
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <th>우편번호</th>
+	                        <td>
+	                            ${memb.postcode }
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <th>가입 일시</th>
+	                        <td>
+	                            <fmt:parseDate value="${memb.resdate }" pattern="yyyy-mm-dd" var="parsedDate" />
+	                            <fmt:formatDate value="${parsedDate }" pattern="yyyy년 mm월 dd일" var="outputDate"/>
+	                            ${outputDate }
 	                        </td>
 	                    </tr>
 	                    <tr>
 	                        <td colspan="2">
-	                            <c:if test="${cus.id=='admin' }">
-	                                <a href="${path1 }/admin/customDelete.do?id=${aid }" class="button btn-primary">직권 강퇴</a>
+	                            <c:if test="${memb.id=='admin' }">
+	                                <a href="${path1 }/admin/memberDelete.do?id=${aid }" class="button btn-primary">직권 강퇴</a>
 	                            </c:if>
-	                            <c:if test="${!empty cus.id }">
-	                            	<a href="${path1 }/custom/myUpdate.do" class="button btn-primary">회원 정보수정</a>
-	                                <a href="${path1 }/custom/customDelete.do?id=${cus.id }" class="button btn-primary">회원 탈퇴</a>
+	                            <c:if test="${!empty mem.id }">
+	                            	<a href="${path1 }/member/myUpdate.do" class="button btn-primary">회원정보 수정</a>
+	                                <a href="${path1 }/member/memberDelete.do?id=${memb.id }" class="button btn-danger">회원 탈퇴</a>
 	                            </c:if>
-	                            <c:if test="${cus.id=='admin' }">
-	                                <a href="${path1 }/admin/customList.do" class="button btn-primary">회원 목록</a>
+	                            <c:if test="${memb.id=='admin' }">
+	                                <a href="${path1 }/admin/memberList.do" class="button btn-primary">회원 목록</a>
 	                            </c:if>
 	                        </td>
 	                    </tr>

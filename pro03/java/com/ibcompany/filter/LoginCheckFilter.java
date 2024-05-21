@@ -26,8 +26,8 @@ public class LoginCheckFilter implements Filter {
         
         HttpSession session = httpRequest.getSession(false);
         String path = httpRequest.getContextPath();
-        if(session == null || session.getAttribute("cus") == null) {
-            httpResponse.sendRedirect(path+"/custom/login.do");
+        if(session == null || session.getAttribute("memb") == null) {
+            httpResponse.sendRedirect(path+"/member/login.do");
             return;
         }
         

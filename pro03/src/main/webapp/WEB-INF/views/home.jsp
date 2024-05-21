@@ -21,13 +21,13 @@
 		<li><a href="${path2 }/sample/list.do">샘플 리스트</a></li>
 	</ul>
 	<hr>
-	<c:if test="${empty mem}">
+	<c:if test="${empty memb}">
 	<ul>
 		<li><a href="${path2 }/member/login.do">로그인</a></li>
 		<li><a href="${path2 }/member/agree.do">회원가입</a></li>
 	</ul>
 	</c:if>
-	<c:if test="${!empty mem}">
+	<c:if test="${!empty memb}">
 	<ul>
 		<li><a href="${path2 }/member/myInfo.do">마이페이지</a></li>
 		<li><a href="${path2 }/member/myUpdate.do">회원정보수정</a></li>
@@ -36,6 +36,7 @@
 	</c:if>	
 	<ul>
 		<li><a href="${path2 }/board/boardList.do">게시판 목록</a></li>
+		<li></li>
 	</ul>
 	<c:if test="${sid.equals('admin') }">
 	<ul>

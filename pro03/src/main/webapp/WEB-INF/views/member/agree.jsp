@@ -938,7 +938,7 @@
         var in_btn1 = document.getElementById("in_btn1");
         in_btn1.addEventListener("click", function(){
             if(ck_item1.checked && ck_item2.checked){
-                location.href = "${path1}/custom/join.do";
+                location.href = "${path1}/member/join.do";
             } else {
                 alert("약관 및 개인정보처리 방침에 동의하지 않으셨습니다.");
                 return;
