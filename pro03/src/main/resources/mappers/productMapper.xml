@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+"-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="product">
+
+	<!-- 상품 목록 -->
+	<select id="getProductList" resultType="com.ibcompany.dto.Product">
+		select * from product order by pno desc;
+	</select>
+	
+	<!-- 카테고리별 상품 목록 -->
+	<select id="getCategoryList" resultType="com.ibcompany.dto.Product">
+		select * from product where category=#{category} order by pno desc;
+	</select>
+	
+	<!-- 총 상품 수 -->
+	<select id="maxNum" resultType="int">
+		select count(*) from product
+	</select>
+	
+	<!-- 상품 상세 보기 -->	
+	<select id="getProduct" resultType="com.ibcompany.dto.Product">
+		select * from product where pno=#{pno}
+	</select>
+	
+	<!-- 상품 등록 -->
+	<insert id="insProduct">
+		insert into product(category, pname, com, price, img, img2, img3) 
+		values (#{category}, #{pname}, #{com}, #{price}, #{img}, #{img2}, #{img3})
+	</insert>
+	
+	<!-- 상품 변경 -->
+	<update id="upProduct">
+		update product set pname=#{pname}, price=#{price} where pno=#{pno}
+	</update>
+	
+	<!-- 상품 삭제 -->
+	<delete id="delProduct">
+		delete from product where pno=#{pno}
+	</delete>
+</mapper>

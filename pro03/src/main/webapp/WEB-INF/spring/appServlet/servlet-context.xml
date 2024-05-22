@@ -53,6 +53,7 @@
             <beans:ref bean="adminIntercepter" />
         </interceptor>
     </interceptors>
+     
 	<!--
 	<beans:bean id="sampleInterceptor" class="com.cj.util.SampleInterceptor" />
 	<beans:bean id="loginInterceptor" class="com.cj.util.LoginCheckInterceptor" />

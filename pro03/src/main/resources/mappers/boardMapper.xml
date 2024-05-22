@@ -3,24 +3,38 @@
 "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
-	<select id="getBoardList" resultType="com.ibcompany.dto.Board">
-		select * from board order by bno desc;
+
+	<!-- 공지사항 목록 -->
+	<select id="getBoardList" parameterType="com.ibcompany.util.PagingBean" resultType="com.ibcompany.dto.Board">
+		select * from board order bno desc limit #{startRowNumber}, #{contentNumberPerPage}  
 	</select>
+	
+	<!-- 총 게시물 수 -->
 	<select id="maxNum" resultType="int">
 		select count(*) from board
 	</select>
+	
+	<!-- 공지사항 상세 보기 -->
 	<select id="getBoard" resultType="com.ibcompany.dto.Board">
 		select * from board where bno=#{bno}
 	</select>
+	
+	<!-- 공지사항 등록 -->
 	<insert id="insBoard">
 		insert into board(title, content, author) values (#{title}, #{content}, #{author})
 	</insert>
+	
+	<!-- 공지사항 변경 -->
 	<update id="upBoard">
 		update board set title=#{title}, content=#{content} where bno=#{bno}
 	</update>
+	
+	<!-- 공지사항 조회수 증가 -->
 	<update id="upVcnt">
 		update board set vcnt=vcnt+1 where bno=#{bno}
 	</update>
+	
+	<!-- 공지사항 삭제 -->
 	<delete id="delBoard">
 		delete from board where bno=#{bno}
 	</delete>

@@ -1,47 +1,36 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
-<c:set var="path2" value="${pageContext.request.contextPath }" />
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<c:set var="path2" value="${pageContext.servletContext.contextPath }" />
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>메인 페이지</title>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MAIN</title>
+    <jsp:include page="./include/head.jsp"></jsp:include>
 </head>
 <body>
-	<h2>${serverTime }</h2>
-	<h2>${author }</h2>
-	<h2>${company }</h2>
-	<p>${msg }</p>
-	<hr>
-	<ul>
-		<li><a href="${path2 }/sample/list.do">샘플 리스트</a></li>
-	</ul>
-	<hr>
-	<c:if test="${empty memb}">
-	<ul>
-		<li><a href="${path2 }/member/login.do">로그인</a></li>
-		<li><a href="${path2 }/member/agree.do">회원가입</a></li>
-	</ul>
-	</c:if>
-	<c:if test="${!empty memb}">
-	<ul>
-		<li><a href="${path2 }/member/myInfo.do">마이페이지</a></li>
-		<li><a href="${path2 }/member/myUpdate.do">회원정보수정</a></li>
-		<li><a href="${path2 }/member/logout.do">로그아웃</a></li>
-	</ul>
-	</c:if>	
-	<ul>
-		<li><a href="${path2 }/board/boardList.do">게시판 목록</a></li>
-		<li></li>
-	</ul>
-	<c:if test="${sid.equals('admin') }">
-	<ul>
-		<li><a href="${path2 }/admin/memberList.do">회원목록</a></li>
-	</ul>
-	</c:if>	
+<div class="full-wrap">
+	<header id="hd" class="header">
+    	<div class="container">
+			<jsp:include page="./include/hd.jsp"></jsp:include>
+		</div>
+	</header>
+	<main class="contents" id="contents">
+		<section class="page clr-fix" id="page1">
+			<div class="page-wrap">
+				<h2 class="page-title">Hello world!</h2>
+				
+				<P>  The time on the server is ${serverTime}. </P>
+			</div>
+		</section>	
+	</main>
+	<footer id="ft">
+		<jsp:include page="./include/ft.jsp"></jsp:include>
+	</footer>
+</div>
 </body>
 </html>
