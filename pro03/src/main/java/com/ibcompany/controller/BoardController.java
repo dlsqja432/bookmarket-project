@@ -33,7 +33,6 @@ public class BoardController {
 	
 	@GetMapping("getBoard.do")
 	public String getBoard(@RequestParam("bno") int bno, Model model) {
-		boardService.upVcnt(bno);
 		Board board = boardService.getBoard(bno);
 		model.addAttribute("board", board);
 		return "board/getBoard";
@@ -44,13 +43,12 @@ public class BoardController {
 		return "board/insBoard";
 	}
 	
-	@PostMapping("insProBoard.do")
+	@PostMapping("insBoardPro.do")
 	public String insProBoard(@RequestParam("title") String title,
-			@RequestParam("content") String content,@RequestParam("author") String author, Model mode) {
+			@RequestParam("content") String content, Model mode) {
 		Board board = new Board();
 		board.setTitle(title);
 		board.setContent(content);
-		board.setAuthor(author);
 		boardService.insBoard(board);
 		return "redirect:boardList.do";
 	}
@@ -62,7 +60,7 @@ public class BoardController {
 		return "board/editBoard";
 	}
 	
-	@PostMapping("editProBoard.do")
+	@PostMapping("editBoardPro.do")
 	public String editProBoard(@RequestParam("bno") int bno, @RequestParam("title") String title, 
 			@RequestParam("content") String content, Model model) {
 		Board board = new Board();

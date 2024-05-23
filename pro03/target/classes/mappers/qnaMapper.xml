@@ -11,7 +11,7 @@
 	</resultMap>
 
 	<!-- 묻고 답하기 목록 조회 -->
-	<select id="getQnaList" parameterType="com.ibcompany.util.PaginbBean" resultMap="qnaRM">
+	<select id="getQnaList" parameterType="com.ibcompany.util.PagingBean" resultMap="qnaRM">
 		select q.no, q.title, q.content, q.lev, q.parno, q.hits, q.resdate, m.id, m.name 
 		from qna q, member m
 		where q.id=m.id order by q.resdate desc  
@@ -48,7 +48,7 @@
 	</insert>
 	
 	<!-- 묻고 답하기 글 변경 -->
-	<update id="upQna" parameterType="com.morning.domain.Qna">
+	<update id="upQna" parameterType="com.ibcompany.dto.Qna">
 		update qna set title=#{title}, content=#{content} where no=#{no}
 	</update>
 	

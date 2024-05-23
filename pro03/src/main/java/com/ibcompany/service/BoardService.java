@@ -11,6 +11,5 @@ public interface BoardService {
 	public Board getBoard(int bno);
 	public void insBoard(Board board);
 	public void upBoard(Board board);
-	public void upVcnt(int bno);
 	public void delBoard(int bno);
 }

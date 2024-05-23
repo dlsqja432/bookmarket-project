@@ -15,12 +15,13 @@ insert into sample values (4, '샘플4', default);
 -- member 테이블 생성
 create table member(id varchar(20) primary key, pw varchar(300) not null, name varchar(100) not null,
 email varchar(200), tel varchar(100), addr1 varchar(200), addr2 varchar(200), 
-postcode varchar(20), birth date, point int default 1000,
+postcode varchar(20), point int default 1000,
 resdate datetime default current_timestamp);
 select * from member;
 desc member;
 
 -- member 테이블 더미데이터
+insert into member values('test1', '1234', '테스트계정', 'test@naver.com','010-0123-1234', '강서구화곡동', '원주민', '12345', default, default);
 
 
 -- board 테이블 생성

@@ -5,8 +5,8 @@
 <mapper namespace="board">
 
 	<!-- 공지사항 목록 -->
-	<select id="getBoardList" parameterType="com.ibcompany.util.PagingBean" resultType="com.ibcompany.dto.Board">
-		select * from board order bno desc limit #{startRowNumber}, #{contentNumberPerPage}  
+	<select id="getBoardList" resultType="com.ibcompany.dto.Board">
+		select * from board order by bno desc 
 	</select>
 	
 	<!-- 총 게시물 수 -->
@@ -21,7 +21,7 @@
 	
 	<!-- 공지사항 등록 -->
 	<insert id="insBoard">
-		insert into board(title, content, author) values (#{title}, #{content}, #{author})
+		insert into board(title, content) values (#{title}, #{content})
 	</insert>
 	
 	<!-- 공지사항 변경 -->

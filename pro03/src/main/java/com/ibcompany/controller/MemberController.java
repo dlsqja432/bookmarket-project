@@ -2,6 +2,7 @@ package com.ibcompany.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -68,17 +69,15 @@ public class MemberController {
 	
 	@PostMapping("joinPro.do")
 	public String joinPro(HttpServletRequest request, Model model) {
-		Member member = new Member(request.getParameter("id"),
-				pwdEncoder.encode(request.getParameter("pw")),
-				request.getParameter("name"),
-				request.getParameter("email"),
-				request.getParameter("tel"),
-				request.getParameter("addr1"),
-				request.getParameter("addr2"),
-				request.getParameter("postcode"),
-				request.getParameter("birth"),
-				Integer.parseInt(request.getParameter("point")),
-				request.getParameter("resdate"));
+		Member member = new Member();
+		member.setId(request.getParameter("id"));
+		member.setPw(pwdEncoder.encode(request.getParameter("pw")));
+		member.setName(request.getParameter("name"));
+		member.setEmail(request.getParameter("email"));
+		member.setTel(request.getParameter("tel"));
+		member.setAddr1(request.getParameter("addr1"));
+		member.setAddr2(request.getParameter("addr2"));
+		member.setPostcode(request.getParameter("postcode"));
 		memberService.insMember(member);
 		model.addAttribute("msg", "회원가입을 축하합니다.");
 		return "redirect:/";
@@ -134,11 +133,24 @@ public class MemberController {
 		member.setAddr1(request.getParameter("addr1"));
 		member.setAddr2(request.getParameter("addr2"));
 		member.setPostcode(request.getParameter("postcode"));
-		member.setBirth(request.getParameter("birth"));
 		memberService.upInfo(member);
 		model.addAttribute("msg", "회원가입을 축하합니다.");
 		session.invalidate();
 		return "redirect:/";
+	}
+	
+	@GetMapping("memberDelete.do")
+	public String memberDelete(@RequestParam("id") String id, Model model) {
+		memberService.delMember(id);
+		session.invalidate();
+		return "redirect:/";
+	}
+	
+	@GetMapping("memberList.do")
+	public String memberList(Model model) {
+		List<Member> memberList = memberService.getMemberList();
+		model.addAttribute("memberList",memberList);
+		return "admin/memberList";
 	}
 }
 

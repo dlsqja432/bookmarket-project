@@ -1,61 +1,76 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
-<c:set var="path0" value="<%=request.getContextPath() %>" />    
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<c:set var="path2" value="${pageContext.servletContext.contextPath }" />
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 	<meta charset="UTF-8">
-    <title>게시판 글 등록</title>
-    <script src="https://code.jquery.com/jquery-latest.js"></script>
-    <link rel="stylesheet" href="resources/css/normalize.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.2.3/motion-ui.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation-prototype.min.css">
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css' rel='stylesheet' type='text/css'>
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.2.3/motion-ui.min.js"></script>
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>공지사항 글 등록</title>
+	<jsp:include page="../include/head.jsp"></jsp:include>
 </head>
 <body>
-<header id="header">
-	<a href="${path0 }">메인으로</a>
-</header>
-<div id="contents">
-	<section class="page" id="page1">
-		<div style="width:1400px; margin:0 auto;">
-			<h3 class="page_title">게시판 글 등록</h3>
-			<form action="${path0 }/board/insProBoard.do" method="post">
-				<table class="table">
-					<tbody>
-						<tr>
-							<th><label for="title">제목</label></th>
-							<td>
-								<input type="text" name="title" id="title" class="form-control" maxlength="100" required>
-								<input type="hidden" name="author" id="author" value="${sid }">
-							</td>
-						</tr>
-						<tr>
-							<th><label for="content">내용</label></th>
-							<td>
-								<textarea name="content" id="content" rows="8" cols="80" class="form-control"></textarea>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<hr>
-				<div class="btn-group">
-				  <button type="submit" class="button btn-secondary">글 등록</button>
-				  <a href="${path0 }/board/boardList.do" class="button btn-secondary">글 목록</a>
+<div class="full-wrap">
+    <!-- 헤더 부분 인클루드 -->
+    <header id="hd">
+    	<div class="container">
+    		<jsp:include page="../include/hd.jsp"></jsp:include>
+    	</div>
+    </header>
+    <main id="contents" class="contents">
+    	<div id="breadcrumb" class="container breadcrumb-wrap clr-fix" style="height:60px; line-height:60px;">
+	    	<nav class="breadcrumb" aria-label="breadcrumbs">
+			  <ul>
+			    <li><a href="${path2 }">Home</a></li>
+			    <li><a href="${path2 }/board/list.do">Notice</a></li>
+			    <li class="is-active"><a href="#" aria-current="page">Write</a></li>
+			  </ul>
+			</nav>
+    	</div>
+ 	    <section class="page" id="page1">
+    		<h2 class="page-title">공지사항 목록</h2>
+    		<div class="page-wrap">
+	    		<div class="clr-fix">
+	    			<br>
+					<form action="${path2 }/board/insBoardPro.do" method="post">
+						<table class="table">
+							<tbody>
+								<tr>
+									<th><label for="title">제목</label></th>
+									<td>
+										<input type="text" name="title" id="title" class="input" maxlength="100" required>
+									</td>
+								</tr>
+								<tr>
+									<th><label for="content">내용</label></th>
+									<td>
+										<textarea name="content" id="content" rows="8" cols="80" class="textarea"></textarea>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<hr>
+						<div class="buttons">
+						  <button type="submit" class="button is-danger">글 등록</button>
+						  <a href="${path2 }/board/boardList.do" class="button is-primary">글 목록</a>
+						</div>
+					</form>
 				</div>
-			</form>
-		</div>
-	</section>
-</div>
-<footer id="footer" class="footer-nav row expanded collapse">
-
-</footer>
+    		</div>
+    	</section>
+    </main>
+    <!-- 푸터 부분 인클루드 -->
+    <footer id="ft">
+    	<jsp:include page="../include/ft.jsp"></jsp:include>
+    </footer>
+    <script>
+    $(document).ready(function(){
+    	$("#tb1_length, #tb1_filter").css("margin-bottom", "20px");
+    });
+    </script>
+</div>    
 </body>
 </html>

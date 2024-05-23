@@ -13,7 +13,7 @@
 		select * from member where id=#{id}
 	</select>
 	<insert id="insMember">
-		insert into member values (#{id}, #{pw}, #{name}, #{email}, #{tel}, #{addr1}, #{addr2}, #{postcode}, #{birth}, default, default)
+		insert into member values (#{id}, #{pw}, #{name}, #{email}, #{tel}, #{addr1}, #{addr2}, #{postcode}, default, default)
 	</insert>
 	<update id="upPw">
 		update member set pw=#{pw},  where id=#{id}

@@ -38,7 +38,7 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 	
-	<!-- 트랜잭션 및 DB 패키지 방안 및 각 종 로깅과 보안 설정 -->
+	<!-- @Transactional 어노테이션 트랜잭션 관리자 객체 생성 -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
@@ -46,6 +46,32 @@
 	<!-- @Transactional 어노테이션 처리 -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
-	<!-- naver/daum/google 메일 서버 설정 -->
+	<bean id="txAdvice" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+	    <property name="transactionManager" ref="transactionManager"/>
+	    <property name="transactionAttributes">
+	        <props>
+	            <prop key="sel*">PROPAGATION_REQUIRED,readOnly,timeout_30</prop>
+	            <prop key="upHits*">PROPAGATION_REQUIRES_NEW,ISOLATION_SERIALIZABLE</prop>
+	            <prop key="*">PROPAGATION_REQUIRED</prop>
+	        </props>
+	    </property>
+	</bean>    
 	
+	<!-- google 메일 서버 설정 -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value=""/> 
+		<property name="password" value=""/> 
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.debug">true</prop>
+				<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+				<prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
+			</props>
+		</property>
+	</bean>
 </beans>

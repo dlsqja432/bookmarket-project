@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ibcompany.dao.BoardDAO;
 import com.ibcompany.dto.Board;
@@ -28,8 +29,11 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.maxNum();
 	}
 
+	//@Transactional : 둘다 성공하던지 둘다 실패하던지
+	@Transactional
 	@Override
 	public Board getBoard(int bno) {
+		boardDAO.upVcnt(bno);
 		return boardDAO.getBoard(bno);
 	}
 
@@ -46,10 +50,5 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void delBoard(int bno) {
 		boardDAO.delBoard(bno);
-	}
-
-	@Override
-	public void upVcnt(int bno) {
-		boardDAO.upVcnt(bno);
 	}
 }
