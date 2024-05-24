@@ -24,7 +24,11 @@
 			<div class="page-wrap">
 				<h2 class="page-title">Hello world!</h2>
 				
-				<P>  The time on the server is ${serverTime}. </P>
+				<P>  
+				The time on the server is ${serverTime}.<br>
+				<a href="${path2 }/error/message.do">다국어 지원</a>
+				</P>
+				
 			</div>
 		</section>	
 	</main>
