@@ -14,4 +14,5 @@ public class Product {
 	private String com;
 	private int price;
 	private String img;
+	private String img2;
 }

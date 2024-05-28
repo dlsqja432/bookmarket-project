@@ -15,7 +15,6 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Autowired
 	public ProductServiceImpl(ProductDAO productDAO) {
-		super();
 		this.productDAO = productDAO;
 	}
 
@@ -25,8 +24,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> getCategoryList() {
-		return productDAO.getCategoryList();
+	public List<Product> getCategoryList(String category) {
+		return productDAO.getCategoryList(category);
 	}
 
 	@Override

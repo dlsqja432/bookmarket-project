@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ibcompany.dao.FreeDAO;
 import com.ibcompany.dto.Free;
@@ -28,8 +29,10 @@ public class FreeServiceImpl implements FreeService {
 		return freeDAO.maxNum();
 	}
 
+	@Transactional
 	@Override
 	public Free getFree(int no) {
+		freeDAO.upHits(no);
 		return freeDAO.getFree(no);
 	}
 
@@ -41,11 +44,6 @@ public class FreeServiceImpl implements FreeService {
 	@Override
 	public void upFree(Free free) {
 		freeDAO.upFree(free);
-	}
-
-	@Override
-	public void upHits(int no) {
-		freeDAO.upHits(no);
 	}
 
 	@Override

@@ -9,7 +9,7 @@
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="${path1 }" class="logo-wrap">
-                <img src="${path1}/resources/images/logo01.svg" alt="LOGO" class="logo">
+                <img src="${path1}/resources/images/alogo.png" alt="LOGO" class="logo">
             </a>
 
             <button class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -54,28 +54,28 @@
                      </div>   
 				</div>
 				<div class="navbar-item has-dropdown is-hoverable">
-                    <a href="${path1 }/product/list.do" class="navbar-link">
+                    <a href="${path1 }/product/productList.do" class="navbar-link">
                         Product
                     </a>
                     <div class="navbar-dropdown">
-                        <a href="${path1 }/product/list.do?cate=note" class="navbar-item" title="노트">
-                            Note
+                        <a href="${path1 }/product/categoryList.do?category=snack" class="navbar-item" title="과자">
+                            snack
                         </a>
-                        <a href="${path1 }/product/list.do?cate=fancy" class="navbar-item" title="팬시">
-                            Fancy
+                        <a href="${path1 }/product/categoryList.do?category=candy" class="navbar-item" title="캔디">
+                            candy
                         </a>
-                        <a href="${path1 }/product/list.do?cate=pen" class="navbar-item" title="필기류">
-                            Pen
+                        <a href="${path1 }/product/categoryList.do?category=choco" class="navbar-item" title="초코">
+                            choco
                         </a>
                         <hr class="navbar-divider">
-                        <a href="${path1 }/product/list.do?cate=file" class="navbar-item" title="파일철">
+                        <a href="${path1 }/product/productList.do?cate=file" class="navbar-item" title="파일철">
                             File
                         </a>
-                        <a href="${path1 }/product/list.do?cate=binder" class="navbar-item" title="바인더">
+                        <a href="${path1 }/product/productList.do?cate=binder" class="navbar-item" title="바인더">
                             Binder
                         </a>
                         <hr class="navbar-divider">
-                        <a href="${path1 }/product/list.do?cate=other" class="navbar-item" title="기타 및 집기류">
+                        <a href="${path1 }/product/productList.do?cate=other" class="navbar-item" title="기타 및 집기류">
                             Other
                         </a>                        
                     </div>
@@ -91,7 +91,7 @@
                         <a href="${path1 }/qna/list.do" class="navbar-item">
                             QnA
                         </a>
-                        <a href="${path1 }/free/list.do" class="navbar-item">
+                        <a href="${path1 }/free/freeList.do" class="navbar-item">
                             Free
                         </a>
                         <a href="${path1 }/file/filelist1.do" class="navbar-item">

@@ -45,6 +45,10 @@ select * from free;
 
 alter table free add constraint fk_memfree foreign key (id) references member(id);
 
+create view ckboard as(select f.no as no, f.title as title, f.content as content, f.hits as hits, 
+f.resdate as resdate, m.id as id, m.name as name from free f,member m where f.id=m.id);
+select * from ckboard;
+
 
 -- qna 테이블 생성
 create table qna(no int auto_increment primary key, title varchar(200),
@@ -67,11 +71,15 @@ select * from fileboard;
 -- product 테이블 생성
 create table product(pno int auto_increment primary key, 
 category varchar(20) not null, pname varchar(100) not null,
-com varchar(1000), price int default 1000, img varchar(300), img2 varchar(300), img3 varchar(300));
+com varchar(1000), price int default 1000, img varchar(300), img2 varchar(300));
 select * from product;
 
 alter table product add img2 varchar(300);
-alter table product add img3 varchar(300);
+
+-- product 테이블 더미데이터 생성
+insert into product values(default, 'snack', 'THE 빠새 청양마요맛', 'haitai', 1500, 'snack01_list.png', 'snack01.png');
+insert into product values(default, 'candy', '연양갱 고구마', 'haitai', 1200, 'candy01_list.png', 'candy01.png');
+insert into product values(default, 'choco', '프로틴 너티 클러스터', 'haitai', 1800, 'choco01_list.png', 'choco01.png');
 
 
 -- inventory 테이블 생성

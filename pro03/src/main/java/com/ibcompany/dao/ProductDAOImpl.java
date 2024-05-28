@@ -24,8 +24,8 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public List<Product> getCategoryList() {
-		return sqlSession.selectList("product.getCategoryList");
+	public List<Product> getCategoryList(String category) {
+		return sqlSession.selectList("product.getCategoryList", category);
 	}
 
 	@Override
