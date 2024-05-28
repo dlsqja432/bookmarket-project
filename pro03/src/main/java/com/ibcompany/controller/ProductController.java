@@ -1,9 +1,9 @@
 package com.ibcompany.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ibcompany.dto.Product;
@@ -58,7 +59,10 @@ public class ProductController {
 	
 	@PostMapping("insProductPro.do")
 	public String insProductPro(MultipartHttpServletRequest files, Product product, Model model) {
+		String uploadFolder = servletContext.getRealPath("/resources/upload");
+		List<MultipartFile> list = files.getFiles("files");
 		
+		List<UploadData> datas = new ArrayList<>();
 		return "redirect:productList.do";
 	}
 }
