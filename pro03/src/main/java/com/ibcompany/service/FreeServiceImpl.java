@@ -35,6 +35,12 @@ public class FreeServiceImpl implements FreeService {
 		freeDAO.upHits(no);
 		return freeDAO.getFree(no);
 	}
+	
+	@Override
+	public Free getNoCountFree(int no) {
+		return freeDAO.getFree(no);
+	}
+
 
 	@Override
 	public void insFree(Free free) {

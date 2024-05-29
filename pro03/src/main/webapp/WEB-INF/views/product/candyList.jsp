@@ -37,6 +37,19 @@
         .product-price {
             color: green;
         }
+        .add-product-btn {
+            background: linear-gradient(to right, #4CAF50, #45A049);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .add-product-btn:hover {
+            background: linear-gradient(to right, #45A049, #4CAF50);
+        }
 	</style>
     <jsp:include page="../include/head.jsp"></jsp:include>
 </head>
@@ -50,16 +63,22 @@
 	<main class="contents" id="contents">
 		<section class="page clr-fix" id="page1">
 			<div class="page-wrap">
-				<h1>스낵 리스트</h1>
+				<div style="margin:10px 0">
+					<a href="${path2 }/product/productList.do"><button class="add-product-btn">ALL</button></a>
+					<a href="${path2 }/product/categoryList.do?category=snack"><button class="add-product-btn">스낵</button></a>
+					<a href="${path2 }/product/categoryList.do?category=choco"><button class="add-product-btn">초코</button></a>
+					<a href="${path2 }/product/categoryList.do?category=candy"><button class="add-product-btn">캔디</button></a>
+				</div>
+				<h1>캔디 리스트</h1>
     			<div class="product-list">
     				<c:if test="${not empty categoryList }">
     				<c:forEach var="candy" items="${categoryList }">
 			        <div class="product">
 			       		<a href="${path2 }/product/getProduct.do?pno=${candy.pno}">
-			            	<img src="${path2 }/resources/images/${candy.category }/${candy.img}" alt="${candy.pname }">
+			            	<img src="${path2 }/resources/upload/${candy.img}" alt="${candy.pname }">
 			            </a>
 			            <div class="product-name">${candy.pname }</div>
-			            <div class="product-price">${candy.price }</div>
+			            <div class="product-price">${candy.price }원</div>
 			        </div>
 			        </c:forEach>
 			        </c:if>
@@ -67,6 +86,8 @@
 			        상품이 존재하지 않습니다.
 			        </c:if>
 			    </div>
+			    <button class="add-product-btn" onclick="location.href='${path2}/product/insProduct.do'" style="margin:10px;">상품 등록</button>
+			    <a href="${path2 }/product/productList.do" class="button is-warning" style="margin:10px;">상품 목록</a>
 			</div>
 		</section>	
 	</main>

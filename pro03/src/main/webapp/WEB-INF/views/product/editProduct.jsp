@@ -46,56 +46,59 @@
 			</nav>
     	</div>
  	    <section class="page" id="page1">
-    		<h2 class="page-title">상품 등록</h2>
+    		<h2 class="page-title">상품 정보 수정</h2>
     		<hr>
     		<div class="page-wrap">
-            	<form name="frm1" id="frm1" action="${path2 }/product/insProductPro.do" method="post" enctype="multipart/form-data">
+            	<form name="frm1" id="frm1" action="${path2 }/product/editProductPro.do" method="post" enctype="multipart/form-data">
                 	<table class="table" id="table1">
 	                    <tbody>
 	                    <tr>
 	                        <th style="background-color:#dcdcdc">카테고리</th>
 	                        <td>
 								<select name="category" id="category">
-									<option value="snack">스낵</option>
-									<option value="choco">초코</option>
-									<option value="candy">캔디</option>
+									<option value="snack" ${product.category == 'snack' ? 'selected' : ''}>스낵</option>
+									<option value="choco" ${product.category == 'choco' ? 'selected' : ''}>초코</option>
+									<option value="candy" ${product.category == 'candy' ? 'selected' : ''}>캔디</option>
 								</select>	                            
 	                        </td>
 	                    </tr>
 	                    <tr>
 	                        <th style="background-color:#dcdcdc">제품이름</th>
 	                        <td>
-	                            <input type="text" name="pname" id="pname" placeholder="제품이름 입력" maxlength="100" class="input" required>
+	                        	<input type="hidden" name="pno" id="pno" value="${product.pno }">
+	                            <input type="text" name="pname" id="pname" placeholder="제품이름 입력" maxlength="100" class="input" value="${product.pname }" required >
 	                        </td>
 	                    </tr>
 	                    <tr>
 	                        <th style="background-color:#dcdcdc">설명</th>
 	                        <td>
-	                            <input type="text" name="com" id="com" placeholder="제품 설명" maxlength="1000" class="input" required>
+	                            <input type="text" name="com" id="com" placeholder="제품 설명" maxlength="1000" class="input" value="${product.com }" required>
 	                        </td>
 	                    </tr>
 	                    <tr>
 	                        <th style="background-color:#dcdcdc">가격</th>
 	                        <td>
-	                            <input type="number" min="0" step="100" value="1000" name="price" id="price" placeholder="가격 입력" class="input" required>
+	                            <input type="number" min="0" step="100" value="${product.price }" name="price" id="price" placeholder="가격 입력" class="input" required>
 	                        </td>
 	                    </tr>
 	                    <tr>
 	                        <th style="background-color:#dcdcdc">상품 썸네일 이미지</th>
 	                        <td>
-	                            <input type="file" name="img" id="img" accept="image/*">
+	                            <input type="file" name="img" id="img" accept="image/*" value="${product.img }">
+	                            <br>현재 이미지 : <img src="${path2 }/resources/upload/${product.img}" width="100">
 	                        </td>
 	                    </tr>
 	                    <tr>
 	                        <th style="background-color:#dcdcdc">상품 상세 이미지</th>
 	                        <td>
-	                            <input type="file" name="img2" id="img2" accept="image/*">
+	                            <input type="file" name="img2" id="img2" accept="image/*" value="${product.img2 }">
+	                            <br>현재 이미지 : <img src="${path2 }/resources/upload/${product.img}" width="100">
 	                        </td>
 	                    </tr>
 	                    <tr>
 	                        <td colspan="2">
 	                        	<div class="buttons">
-		                            <input type="submit" class="button is-danger" value="제품등록" >
+		                            <input type="submit" class="button is-danger" value="제품수정" >
 		                            <input type="reset" class="button is-info" value="취소" >
 		                            <a href="${path2 }/product/productList.do" class="button is-warning">상품 목록</a>
 	                            </div>

@@ -37,6 +37,9 @@
         .product-price {
             color: green;
         }
+        .product-amount {
+            color: blue;
+        }
         .add-product-btn {
             background: linear-gradient(to right, #4CAF50, #45A049);
             border: none;
@@ -64,30 +67,32 @@
 		<section class="page clr-fix" id="page1">
 			<div class="page-wrap">
 				<div style="margin:10px 0">
-					<a href="${path2 }/product/productList.do"><button class="add-product-btn">ALL</button></a>
 					<a href="${path2 }/product/categoryList.do?category=snack"><button class="add-product-btn">스낵</button></a>
-					<a href="${path2 }/product/categoryList.do?category=choco"><button class="add-product-btn">초코</button></a>
 					<a href="${path2 }/product/categoryList.do?category=candy"><button class="add-product-btn">캔디</button></a>
+					<a href="${path2 }/product/categoryList.do?category=choco"><button class="add-product-btn">초코</button></a>
 				</div>
-				<h1>초코 리스트</h1>
+				<h1>상품 재고 리스트</h1>
     			<div class="product-list">
-    				<c:if test="${not empty categoryList }">
-    				<c:forEach var="choco" items="${categoryList }">
+    				<c:if test="${not empty inventoryList }">
+    				<c:forEach var="inventory" items="${inventoryList }" varStatus="status">
 			        <div class="product">
-			        	<a href="${path2 }/product/getProduct.do?pno=${choco.pno}">
-			            	<img src="${path2 }/resources/upload/${choco.img}" alt="${choco.pname }">
+			        	<a href="${path2 }/inventory/getInventory.do?ino=${inventory.ino}">
+			            	<img src="${path2 }/resources/upload/${productList[status.index].img}" alt="${productList[status.index].pname }">
 			            </a>
-			            <div class="product-name">${choco.pname }</div>
-			            <div class="product-price">${choco.price }원</div>
+			            <div class="product-name">${productList[status.index].pname }</div>
+			            <div class="product-price">입고가 : ${inventory.inprice }원</div>
+			            <div class="product-price">출고가 : ${inventory.outprice }원</div>
+			            <div class="product-amount">수량 : ${inventory.amount }개</div>
 			        </div>
 			        </c:forEach>
 			        </c:if>
-			        <c:if test="${empty categoryList }">
-			        상품이 존재하지 않습니다.
+			        <c:if test="${empty inventoryList }">
+			        	상품이 존재하지 않습니다.
 			        </c:if>
 			    </div>
-			    <button class="add-product-btn" onclick="location.href='${path2}/product/insProduct.do'" style="margin:10px;">상품 등록</button>
-			    <a href="${path2 }/product/productList.do" class="button is-warning" style="margin:10px;">상품 목록</a>
+			    <c:if test="${sid.equals('admin') }">
+			    <button class="add-product-btn" onclick="location.href='${path2}/inventory/insInventory.do'">재고 등록</button>
+			    </c:if>
 			</div>
 		</section>	
 	</main>

@@ -146,6 +146,11 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	@GetMapping("admin.do")
+	public String admin(Model model) {
+		return "admin/home";
+	}
+	
 	@GetMapping("memberList.do")
 	public String memberList(Model model) {
 		List<Member> memberList = memberService.getMemberList();

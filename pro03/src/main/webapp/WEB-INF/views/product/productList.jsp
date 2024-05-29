@@ -63,10 +63,11 @@
 	<main class="contents" id="contents">
 		<section class="page clr-fix" id="page1">
 			<div class="page-wrap">
-				<div>
-					<a href="${path2 }/product/categoryList.do?category=snack">스낵</a>
-					<a href="${path2 }/product/categoryList.do?category=candy">캔디</a>
-					<a href="${path2 }/product/categoryList.do?category=choco">초코</a>
+				<div style="margin:10px 0">
+					<a href="${path2 }/product/productList.do"><button class="add-product-btn">ALL</button></a>
+					<a href="${path2 }/product/categoryList.do?category=snack"><button class="add-product-btn">스낵</button></a>
+					<a href="${path2 }/product/categoryList.do?category=choco"><button class="add-product-btn">초코</button></a>
+					<a href="${path2 }/product/categoryList.do?category=candy"><button class="add-product-btn">캔디</button></a>
 				</div>
 				<h1>상품 리스트</h1>
     			<div class="product-list">
@@ -74,18 +75,20 @@
     				<c:forEach var="product" items="${productList }">
 			        <div class="product">
 			        	<a href="${path2 }/product/getProduct.do?pno=${product.pno}">
-			            	<img src="${path2 }/resources/images/${product.category }/${product.img}" alt="${product.pname }">
+			            	<img src="${path2 }/resources/upload/${product.img}" alt="${product.pname }">
 			            </a>
 			            <div class="product-name">${product.pname }</div>
-			            <div class="product-price">${product.price }</div>
+			            <div class="product-price">${product.price }원</div>
 			        </div>
 			        </c:forEach>
 			        </c:if>
 			        <c:if test="${empty productList }">
-			        상품이 존재하지 않습니다.
+			        	상품이 존재하지 않습니다.
 			        </c:if>
 			    </div>
-			    <button class="add-product-btn" onclick="location.href='${path2}/product/insProduct.do'">상품 등록</button>
+			    <c:if test="${sid.equals('admin') }">
+			    <button class="add-product-btn" onclick="location.href='${path2}/product/insProduct.do'" style="margin:10px;">상품 등록</button>
+			    </c:if>
 			</div>
 		</section>	
 	</main>

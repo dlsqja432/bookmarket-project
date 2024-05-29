@@ -130,8 +130,8 @@
                         </a>
                     </c:if>
                     <c:if test="${sid.equals('admin')}">
-                        <a href="${path1}/member/memberList.do" class="button is-light">
-                            MemberList
+                        <a href="${path1}/member/admin.do" class="button is-light">
+                            Admin
                         </a>
                     </c:if>
                     </div>

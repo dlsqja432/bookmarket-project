@@ -23,6 +23,8 @@
 	<resources mapping="/admin/**" location="/WEB-INF/views/admin" />
 	<resources mapping="/error/**" location="/WEB-INF/views/error" />
 	<resources mapping="/fileupload/**" location="/WEB-INF/views/fileupload" />
+	<resources mapping="/free/**" location="/WEB-INF/views/free" />
+	<resources mapping="/product/**" location="/WEB-INF/views/product" />
 
 	<!-- 리졸버에 대한 접두사와 접미사 설정 -->
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->

@@ -49,7 +49,7 @@
     		<h2 class="page-title">상품 등록</h2>
     		<hr>
     		<div class="page-wrap">
-            	<form name="frm1" id="frm1" action="${path2 }/product/insProductPro.do" method="post" enctype="multipart/form-data">
+            	<form name="frm1" id="frm1" action="${path2 }/inventory/insInventoryPro.do" method="post" enctype="multipart/form-data">
                 	<table class="table" id="table1">
 	                    <tbody>
 	                    <tr>
@@ -63,33 +63,33 @@
 	                        </td>
 	                    </tr>
 	                    <tr>
-	                        <th style="background-color:#dcdcdc">제품이름</th>
+	                        <th style="background-color:#dcdcdc">제품번호</th>
 	                        <td>
-	                            <input type="text" name="pname" id="pname" placeholder="제품이름 입력" maxlength="100" class="input" required>
+	                            <input type="number" name="pno" id="pno" min="0" value="1" required>
 	                        </td>
 	                    </tr>
 	                    <tr>
-	                        <th style="background-color:#dcdcdc">설명</th>
+	                        <th style="background-color:#dcdcdc">입고가</th>
 	                        <td>
-	                            <input type="text" name="com" id="com" placeholder="제품 설명" maxlength="1000" class="input" required>
+	                            <input type="number" name="inprice" id="inprice" min="0" step="100" value="1000" required>
 	                        </td>
 	                    </tr>
 	                    <tr>
-	                        <th style="background-color:#dcdcdc">가격</th>
+	                        <th style="background-color:#dcdcdc">출고가</th>
 	                        <td>
-	                            <input type="number" min="0" step="100" value="1000" name="price" id="price" placeholder="가격 입력" class="input" required>
+	                            <input type="number" min="0" step="100" value="1000" name="outprice" id="outprice" required>
 	                        </td>
 	                    </tr>
 	                    <tr>
-	                        <th style="background-color:#dcdcdc">상품 썸네일 이미지</th>
+	                        <th style="background-color:#dcdcdc">수량</th>
 	                        <td>
-	                            <input type="file" name="img" id="img" accept="image/*">
+	                            <input type="number" name="amount" id="amount" min="0" value="0" required>
 	                        </td>
 	                    </tr>
 	                    <tr>
-	                        <th style="background-color:#dcdcdc">상품 상세 이미지</th>
+	                        <th style="background-color:#dcdcdc">리마크</th>
 	                        <td>
-	                            <input type="file" name="img2" id="img2" accept="image/*">
+	                            <input type="text" name="remark" id="remark" placeholder="리마크 입력">
 	                        </td>
 	                    </tr>
 	                    <tr>
@@ -97,43 +97,12 @@
 	                        	<div class="buttons">
 		                            <input type="submit" class="button is-danger" value="제품등록" >
 		                            <input type="reset" class="button is-info" value="취소" >
-		                            <a href="${path2 }/product/productList.do" class="button is-warning">상품 목록</a>
+		                            <a href="${path2 }/inventory/inventoryList.do" class="button is-warning">상품 목록</a>
 	                            </div>
 	                        </td>
 	                    </tr>
 	                    </tbody>
 	                </table>
-	                <script>
-	                $("input[type='file']").on("change", function(e){
-						let fileInput = $('input[name="img"]');
-						let fileList = fileInput[0].files;
-						let fileObj = fileList[0];
-						
-						if(!fileCheck(fileObj.name, fileObj.size)) {
-							return false;
-						}
-						
-						alert("통과");
-	                });
-	                
-	                // var, method related with attachFile
-	                let regex = new RegExp("(.*?)\.(jpg|png)$");
-	                let maxSize = 10485760; //10MB
-	                
-	                function fileCheck(fileName, fileSize) {
-	                	if(fileSize >= maxSize) {
-	                		alert("파일 사이즈 초과");
-	                		return false;
-	                	}
-	                	
-	                	if(!regex.test(fileName)) {
-	                		alert("해당 종류의 파일은 업로드 할 수 없습니다.");
-	                		return false;
-	                	}
-	                	
-	                	return true;
-	                }
-	                </script>
 	            </form>
 	        </div>
 	    </section>    

@@ -10,11 +10,9 @@
 	</resultMap>
 
 	<!-- 재고 목록 조회 -->
-	<select id="getInventoryList" parameterType="com.ibcompany.util.PagingBean" resultMap="inventoryRM">
-		select i.ino, p.pno i.inprice, i.outprice, i.amount, i.remark, i.resdate
-		from inventory i, product p
-		where i.pno = p.pno order by i.resdate desc
-		limit #{startRowNumber}, #{contentNumberPerPage}
+	<select id="getInventoryList" resultType="com.ibcompany.dto.Inventory">
+		select * from ckinventory order by resdate desc
+		<!-- limit #{startRowNumber}, #{contentNumberPerPage} -->
 	</select>
 	
 	<!-- 총 재고 게시물 수 -->
@@ -23,16 +21,13 @@
 	</select>
 	
 	<!-- 재고 상세 보기 -->
-	<select id="getInventory" resultMap="inventoryRM">
-		select i.ino, p.pno, i.inprice, i.outprice, i.amount, i.resdate 
-		from inventory i, product p
-		where i.pno=p.pno and i.pno=#{pno}
+	<select id="getInventory" resultType="com.ibcompany.dto.Inventory">
+		select * from ckinventory where ino=#{ino}
 	</select>
 	
 	<!-- 재고 등록 -->
 	<insert id="insInventory" parameterType="com.ibcompany.dto.Inventory">
-		insert into inventory(pno, inprice, outprice, amount, remark) 
-		values (#{pno}, #{inprice}, #{outprice}, #{amount}, #{remark})
+		insert into inventory values (default, #{pno}, #{inprice}, #{outprice}, #{amount}, #{remark}, default)
 	</insert>
 	
 	<!-- 재고 변경 -->

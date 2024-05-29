@@ -63,16 +63,22 @@
 	<main class="contents" id="contents">
 		<section class="page clr-fix" id="page1">
 			<div class="page-wrap">
-				<h1>스낵 리스트</h1>
+				<div style="margin:10px 0">
+					<a href="${path2 }/product/productList.do"><button class="add-product-btn">ALL</button></a>
+					<a href="${path2 }/product/categoryList.do?category=snack"><button class="add-product-btn">스낵</button></a>
+					<a href="${path2 }/product/categoryList.do?category=choco"><button class="add-product-btn">초코</button></a>
+					<a href="${path2 }/product/categoryList.do?category=candy"><button class="add-product-btn">캔디</button></a>
+				</div>
+				<h2>스낵 리스트</h2>
     			<div class="product-list">
     				<c:if test="${not empty categoryList }">
     				<c:forEach var="snack" items="${categoryList }">
 			        <div class="product">
 			        	<a href="${path2 }/product/getProduct.do?pno=${snack.pno}">
-			            	<img src="${path2 }/resources/images/${snack.category }/${snack.img}" alt="${snack.pname }">
+			            	<img src="${path2 }/resources/upload/${snack.img}" alt="${snack.pname }">
 			            </a>
 			            <div class="product-name">${snack.pname }</div>
-			            <div class="product-price">${snack.price }</div>
+			            <div class="product-price">${snack.price }원</div>
 			        </div>
 			        </c:forEach>
 			        </c:if>
@@ -80,7 +86,8 @@
 			        상품이 존재하지 않습니다.
 			        </c:if>
 			    </div>
-			    <button class="add-product-btn" onclick="location.href='addProduct.jsp'">상품 등록</button>
+			    <button class="add-product-btn" onclick="location.href='${path2}/product/insProduct.do'" style="margin:10px;">상품 등록</button>
+			    <a href="${path2 }/product/productList.do" class="button is-warning" style="margin:10px;">상품 목록</a>
 			</div>
 		</section>	
 	</main>
