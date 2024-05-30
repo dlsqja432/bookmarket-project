@@ -11,7 +11,7 @@ public class Inventory {
 	
 	private int ino;
 	private int pno;
-	private int pname;
+	private String pname;
 	private int inprice;
 	private int outprice;
 	private int amount;

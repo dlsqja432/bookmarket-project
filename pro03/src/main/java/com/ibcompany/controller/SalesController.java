@@ -51,11 +51,11 @@ public class SalesController {
 		return "sales/get";
 	}
 	
-	@PostMapping("insSales.do")
+	@GetMapping("insSales.do")
 	public String insSales(@RequestParam("pno") int pno, Model model) {
-		model.addAttribute("product", salesService.getSales(pno));
+		model.addAttribute("product", productService.getProduct(pno));
 		model.addAttribute("inventory", inventoryService.getInventoryPno(pno));
-		return "sales/insert";
+		return "sales/insSales";
 	}
 	
 	//(구매)판매 처리

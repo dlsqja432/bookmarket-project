@@ -73,7 +73,7 @@
 				        <a href="${path2 }/product/delProduct.do?pno=${product.pno }" class="button is-danger is-dark">상품 삭제</a>
 			        </c:if>
 			        <c:if test="${not empty memb }">
-			        	<a href="${path2 }/sales/insSales.do" class="button is-success">상품 구매</a>
+			        	<a href="${path2 }/sales/insSales.do?pno=${product.pno}" class="button is-success">상품 구매</a>
 			        </c:if>
 			        <c:if test="${empty memb }">
 			        	<a href="${path2 }/member/login.do">

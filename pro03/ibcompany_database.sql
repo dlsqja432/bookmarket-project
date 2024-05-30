@@ -108,7 +108,7 @@ create view inventoryvo as (select i.ino as ino, i.pno as pno, p.pname as pname,
 avg(i.inprice) as inprice, 
 max(i.outprice) as outprice, sum(i.amount) as amount, 
 i.remark as remark, max(i.resdate) as resdate 
-from inventory i, product p where i.pno=p.pno group by p.pno, i.pno);
+from inventory i, product p where i.pno=p.pno group by i.ino, i.pno, p.pname,i.remark);
 select * from inventoryvo;
 
 

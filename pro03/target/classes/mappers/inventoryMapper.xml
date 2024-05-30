@@ -21,7 +21,12 @@
 	</select>
 	
 	<!-- 재고 상세 보기 -->
-	<select id="getInventory" resultType="com.ibcompany.dto.Inventory">
+	<select id="getInventoryIno" resultType="com.ibcompany.dto.Inventory">
+		select * from inventoryvo where ino=#{ino}
+	</select>
+	
+	<!-- 재고 상세 보기 -->
+	<select id="getInventoryPno" resultType="com.ibcompany.dto.Inventory">
 		select * from inventoryvo where pno=#{pno}
 	</select>
 	
