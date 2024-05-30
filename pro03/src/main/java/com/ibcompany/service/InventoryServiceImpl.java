@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ibcompany.dao.InventoryDAO;
+import com.ibcompany.dto.CategoryVO;
 import com.ibcompany.dto.Inventory;
 
 @Service
@@ -21,6 +22,11 @@ public class InventoryServiceImpl implements InventoryService {
 	@Override
 	public List<Inventory> getInventoryList() {
 		return inventoryDAO.getInventoryList();
+	}
+	
+	@Override
+	public List<CategoryVO> categoryLoading(String category) {
+		return inventoryDAO.categoryLoading(category);
 	}
 
 	@Override
@@ -57,4 +63,5 @@ public class InventoryServiceImpl implements InventoryService {
 	public void delInventory(int ino) {
 		inventoryDAO.delInventory(ino);
 	}
+
 }

@@ -85,6 +85,7 @@ public class MemberController {
 	
 	@GetMapping("login.do")
 	public String login(Model model) {
+		session.invalidate();
 		return "member/login";
 	}
 	

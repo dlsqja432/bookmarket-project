@@ -86,7 +86,9 @@
 			        상품이 존재하지 않습니다.
 			        </c:if>
 			    </div>
+			    <c:if test="${sid.equals('admin') }">
 			    <button class="add-product-btn" onclick="location.href='${path2}/product/insProduct.do'" style="margin:10px;">상품 등록</button>
+			    </c:if>
 			    <a href="${path2 }/product/productList.do" class="button is-warning" style="margin:10px;">상품 목록</a>
 			</div>
 		</section>	

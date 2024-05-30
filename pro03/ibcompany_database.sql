@@ -82,6 +82,15 @@ insert into product values(default, 'candy', '연양갱 고구마', 'haitai', 12
 insert into product values(default, 'choco', '프로틴 너티 클러스터', 'haitai', 1800, 'choco01_list.png', 'choco01.png');
 insert into product values(default, 'choco', '프로틴 너티 클러스터 초코', 'haitai', 2000, 'choco02_list.png', 'choco02.png');
 
+-- productvo view 생성
+create view productvo as (select p.pno as pno, p.category as category, 
+p.pname as pname, p.com as com, p.img as img, p.img2 as img2,
+avg(i.inprice) as inprice, max(i.outprice) as outprice,
+sum(i.amount) as amount from product p, inventory i 
+where p.pno=i.pno
+group by p.pno); 
+select * from productvo;
+
 
 -- inventory 테이블 생성
 create table inventory(ino int auto_increment primary key,
@@ -90,13 +99,17 @@ amount int default 1, remark varchar(200), resdate datetime default current_time
 foreign key(pno) references product(pno));
 select * from inventory;
 
-create view ckinventory as(select i.ino, p.pno, i.inprice, i.outprice, i.amount, i.remark, i.resdate
-from inventory i, product p where i.pno = p.pno);
-select * from ckinventory;
-
 -- inventory 테이블 더미데이터
 insert into inventory values(default, 10, 1000, 1100, 130, "여긴뭐쓰는겨", default);
 insert into inventory values(default, 12, 1300, 1500, 82, "이건머임", default);
+
+-- inventoryvo view 생성
+create view inventoryvo as (select i.ino as ino, i.pno as pno, p.pname as pname, 
+avg(i.inprice) as inprice, 
+max(i.outprice) as outprice, sum(i.amount) as amount, 
+i.remark as remark, max(i.resdate) as resdate 
+from inventory i, product p where i.pno=p.pno group by p.pno, i.pno);
+select * from inventoryvo;
 
 
 -- sales 테이블 생성
@@ -123,3 +136,9 @@ desc basket;
 alter table basket add constraint fk_mem2 foreign key (id) references member(id);
 alter table basket add constraint fk_pro2 foreign key (pno) references product(pno); 
 alter table basket add resdate datetime default current_timestamp;
+
+
+
+
+
+

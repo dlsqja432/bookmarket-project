@@ -46,22 +46,12 @@
 			</nav>
     	</div>
  	    <section class="page" id="page1">
-    		<h2 class="page-title">상품 등록</h2>
+    		<h2 class="page-title">재고 등록</h2>
     		<hr>
     		<div class="page-wrap">
-            	<form name="frm1" id="frm1" action="${path2 }/inventory/insInventoryPro.do" method="post" enctype="multipart/form-data">
+            	<form name="frm1" id="frm1" action="${path2 }/inventory/insInventoryPro.do" method="post">
                 	<table class="table" id="table1">
 	                    <tbody>
-	                    <tr>
-	                        <th style="background-color:#dcdcdc">카테고리</th>
-	                        <td>
-								<select name="category" id="category">
-									<option value="snack">스낵</option>
-									<option value="choco">초코</option>
-									<option value="candy">캔디</option>
-								</select>	                            
-	                        </td>
-	                    </tr>
 	                    <tr>
 	                        <th style="background-color:#dcdcdc">제품번호</th>
 	                        <td>

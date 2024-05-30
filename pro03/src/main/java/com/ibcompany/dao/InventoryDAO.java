@@ -2,11 +2,13 @@ package com.ibcompany.dao;
 
 import java.util.List;
 
+import com.ibcompany.dto.CategoryVO;
 import com.ibcompany.dto.Inventory;
 
 public interface InventoryDAO {
 	
 	public List<Inventory> getInventoryList();
+	public List<CategoryVO> categoryLoading(String category);
 	public int maxNum();
 	public Inventory getInventoryIno(int ino);
 	public Inventory getInventoryPno(int pno);

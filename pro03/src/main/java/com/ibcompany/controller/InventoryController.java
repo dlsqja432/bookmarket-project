@@ -3,6 +3,8 @@ package com.ibcompany.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,8 +58,14 @@ public class InventoryController {
 	}
 	
 	@PostMapping("insInventoryPro.do")
-	public String insInventoryPro(@RequestAttribute("inventory") Inventory inventory, Model model) {
-		Inventory inven = inventoryService.getInventoryPno(inventory.getPno());
+	public String insInventoryPro(HttpServletRequest request, Model model) {
+		Inventory inventory = new Inventory();
+		inventory.setPno(Integer.parseInt(request.getParameter("pno")));
+		inventory.setInprice(Integer.parseInt(request.getParameter("inprice")));
+		inventory.setOutprice(Integer.parseInt(request.getParameter("outprice")));
+		inventory.setAmount(Integer.parseInt(request.getParameter("amount")));
+		inventory.setRemark(request.getParameter("remark"));
+		inventoryService.insInventory(inventory);
 		return "redirect:inventoryList.do";
 	}
 }
