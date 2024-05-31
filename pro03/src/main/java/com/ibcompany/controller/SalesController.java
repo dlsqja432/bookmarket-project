@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ibcompany.dto.IamPortClient;
 import com.ibcompany.dto.Sales;
 import com.ibcompany.service.InventoryService;
 import com.ibcompany.service.ProductService;
@@ -53,6 +54,12 @@ public class SalesController {
 	
 	@GetMapping("insSales.do")
 	public String insSales(@RequestParam("pno") int pno, Model model) {
+		log.info("Before Sales");
+		IamPortClient iamPort = new IamPortClient();
+		model.addAttribute("code", IamPortClient.CODE);
+		model.addAttribute("key", IamPortClient.KEY);
+		model.addAttribute("secret", IamPortClient.SECRET);
+		model.addAttribute("gtid", iamPort.getRandChar());
 		model.addAttribute("product", productService.getProduct(pno));
 		model.addAttribute("inventory", inventoryService.getInventoryPno(pno));
 		return "sales/insSales";
