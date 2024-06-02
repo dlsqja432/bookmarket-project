@@ -1,6 +1,7 @@
 package com.ibcompany.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,8 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public List<Product> getProductList() {
-		return sqlSession.selectList("product.getProductList");
+	public List<Product> getProductList(Map<String, Object> paramMap) {
+		return sqlSession.selectList("product.getProductList", paramMap);
 	}
 
 	@Override

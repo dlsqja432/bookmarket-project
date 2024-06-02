@@ -32,7 +32,7 @@
 	
 	<!-- 재고 등록 -->
 	<insert id="insInventory" parameterType="com.ibcompany.dto.Inventory">
-		insert into inventory values (default, #{pno}, #{pname}, #{inprice}, #{outprice}, #{amount}, #{remark}, default)
+		insert into inventory values (default, #{pno}, #{inprice}, #{outprice}, #{amount}, #{remark}, default)
 	</insert>
 	
 	<!-- 재고 변경 -->

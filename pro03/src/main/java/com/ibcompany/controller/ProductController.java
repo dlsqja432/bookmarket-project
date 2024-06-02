@@ -3,6 +3,7 @@ package com.ibcompany.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -40,9 +41,10 @@ public class ProductController {
 	}
 	
 	@GetMapping("productList.do")
-	public String productList(Model model) {
-		List<Product> productList = productService.getProductList();
-		model.addAttribute("productList", productList);
+	public String productList(@RequestParam(defaultValue = "1") int page, Model model) {
+		Map<String, Object> resultMap = productService.getProductList(page);
+		model.addAttribute("productList", resultMap.get("productList"));
+		model.addAttribute("pagingBean", resultMap.get("pagingBean"));
 		return "product/productList";
 	}
 	

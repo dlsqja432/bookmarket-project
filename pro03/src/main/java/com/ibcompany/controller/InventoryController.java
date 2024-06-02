@@ -34,20 +34,20 @@ public class InventoryController {
 	@GetMapping("inventoryList.do")
 	public String inventoryList(Model model) {
 		List<Inventory> inventoryList = inventoryService.getInventoryList();
-		List<Product> productList = productService.getProductList();
-		List<Product> inProductList = new ArrayList<Product>();
+//		List<Product> productList = productService.getProductList();
+//		List<Product> inProductList = new ArrayList<Product>();
+//		
+//		for(int i=0; i<inventoryList.size(); i++) {
+//			for(int j=0; j<productList.size(); j++) {
+//				if(inventoryList.get(i).getPno() == productList.get(j).getPno()) {
+//					inProductList.add(productList.get(j));
+//					continue;
+//				}
+//			}
+//		}
 		
-		for(int i=0; i<inventoryList.size(); i++) {
-			for(int j=0; j<productList.size(); j++) {
-				if(inventoryList.get(i).getPno() == productList.get(j).getPno()) {
-					inProductList.add(productList.get(j));
-					continue;
-				}
-			}
-		}
-		
-		model.addAttribute("inventoryList", inventoryList);
-		model.addAttribute("productList", inProductList);
+//		model.addAttribute("inventoryList", inventoryList);
+//		model.addAttribute("productList", inProductList);
 		
 		return "admin/inventoryList";
 	}

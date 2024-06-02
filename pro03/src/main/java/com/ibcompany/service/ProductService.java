@@ -1,12 +1,13 @@
 package com.ibcompany.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.ibcompany.dto.Product;
 
 public interface ProductService {
 
-	public List<Product> getProductList();
+	public Map<String, Object> getProductList(int nowPage);
 	public List<Product> getCategoryList(String category);
 	public int maxNum();
 	public Product getProduct(int pno);

@@ -5,8 +5,9 @@
 <mapper namespace="product">
 
 	<!-- 상품 목록 -->
-	<select id="getProductList" resultType="com.ibcompany.dto.Product">
-		select * from product order by category desc, pno desc
+	<select id="getProductList" parameterType="map" resultType="com.ibcompany.dto.Product">
+		select * from product order by category desc, pno desc 
+		limit #{startRowNumber}, #{contentNumberPerPage}
 	</select>
 	
 	<!-- 카테고리별 상품 목록 -->

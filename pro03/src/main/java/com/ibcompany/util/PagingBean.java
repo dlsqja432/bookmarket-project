@@ -21,11 +21,11 @@ public class PagingBean {
 	/**
 	 * 페이지 그룹당 페이지수
 	 */
-	private int pageNumberPerPageGroup = 4;
+	private int pageNumberPerPageGroup = 5;
 	/**
 	 * database에 저장된 총게시물수
 	 */
-	private int totalContents;
+	private int totalContents = 1;
 
 	public PagingBean() {
 	}
@@ -37,6 +37,19 @@ public class PagingBean {
 	public PagingBean(int totalContents, int nowPage) {
 		this.totalContents = totalContents;
 		this.nowPage = nowPage;
+	}
+	
+	public PagingBean(int totalContents, int nowPage, int contentNumberPerPage) {
+		this.totalContents = totalContents;
+		this.nowPage = nowPage;
+		this.contentNumberPerPage = contentNumberPerPage;
+	}
+	
+	public PagingBean(int totalContents, int nowPage, int contentNumberPerPage, int pageNumberPerPageGroup) {
+		this.totalContents = totalContents;
+		this.nowPage = nowPage;
+		this.contentNumberPerPage = contentNumberPerPage;
+		this.pageNumberPerPageGroup = pageNumberPerPageGroup;
 	}
 
 	public int getNowPage() {
@@ -142,7 +155,7 @@ public class PagingBean {
 	 * 현재 페이지가 속한 페이지 그룹의 시작 페이지 번호를 return 한다.<br>
 	 * Page Group 내 Page 수*(현재 페이지 그룹 -1) + 1을 한 값이 첫 페이지이다.<br>
 	 * (페이지 그룹*페이지 그룹 개수, 그룹의 마지막 번호이므로) <br>
-	 * 페이지 그룹 <br>
+	 * 페이지 그룹 <br>+
 	 * 1 2 3 4 -> 5 6 7 8 -> 9 10 <br>
 	 * 
 	 * @return
