@@ -97,6 +97,9 @@
                         <a href="${path1 }/file/filelist1.do" class="navbar-item">
                             Fileboard
                         </a>
+                        <a href="${path1 }/review/reviewList.do" class="navbar-item">
+                            review
+                        </a>
                         <c:if test="${sid.equals('admin')}">
                         <a href="${path1 }/file/fileupload1.do" class="navbar-item">
                             FileUpload

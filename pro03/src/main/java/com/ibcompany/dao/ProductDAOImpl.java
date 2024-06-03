@@ -54,6 +54,11 @@ public class ProductDAOImpl implements ProductDAO {
 	public void upProduct(Product product) {
 		sqlSession.update("product.upProduct", product);
 	}
+	
+	@Override
+	public void upStar(Map<String, Object> paramMap) {
+		sqlSession.update("product.upStar", paramMap);
+	}
 
 	@Override
 	public void delProduct(int pno) {

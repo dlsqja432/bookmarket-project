@@ -20,9 +20,14 @@
 	</select>
 	
 	<!-- 상품 별 별점 평균 -->
-	<select id="avgStar" resultType="int">
+	<select id="avgStar" resultType="float">
 		select ROUND(AVG(star),1) as avgstar from review where pno=#{pno} group by pno;
-	</select> 
+	</select>
+	
+	<!-- 상품별 리뷰 수 -->
+	<select id="productReviewCount" resultType="int">
+		select count(*) from review where pno=#{pno}
+	</select>
 	
 	<!-- 리뷰 상세 보기 -->
 	<select id="getReview" resultType="com.ibcompany.dto.Review">
@@ -31,7 +36,7 @@
 	
 	<!-- 리뷰 등록 -->
 	<insert id="insReview">
-		insert into review(pno, id, content, img, star) values (#{pno}, #{id}, #{img}, #{content}, #{star})
+		insert into review(pno, id, content, img, star) values (#{pno}, #{id}, #{content}, #{img}, #{star})
 	</insert>
 	
 	<!-- 리뷰 변경 -->

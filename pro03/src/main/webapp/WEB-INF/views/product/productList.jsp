@@ -21,16 +21,18 @@
             flex-wrap: wrap;
         }
         .product {
+        	text-align:center;
             border: 1px solid #ddd;
             border-radius: 4px;
             margin: 10px;
             padding: 10px;
-            width: 200px;
+            width: 220px;
             box-shadow: 2px 2px 6px #ccc;
         }
         .product img {
             max-width: 100%;
             height: auto;
+            text-align:center;
         }
         .product-name {
             font-size: 1.2em;
@@ -101,6 +103,61 @@
 		    cursor: default;
 		    pointer-events: none;
 		}
+		
+		.rating {
+		    float: none;
+		    width: 200px;
+		    display: flex;
+		}
+		
+		.star-icon1, .star-icon2, .star-icon3, .star-icon4, .star-icon5, .star-icon6,
+		.star-icon7, .star-icon8, .star-icon9, .star-icon10 {
+		    width: 4px;
+		    height: 40px;
+		    display: block;
+		    position: relative;
+		    left: 0;
+		    background-image: url('https://velog.velcdn.com/images/jellykelly/post/9957327f-f358-4c25-9989-5bb3dd5755d6/image.svg');
+		    background-repeat: no-repeat;
+		    background-size: 40px;
+		}
+		
+		.star-icon1.filled, .star-icon2.filled, .star-icon3.filled, .star-icon4.filled,
+		.star-icon5.filled, .star-icon6.filled, .star-icon7.filled, .star-icon8.filled,
+		.star-icon9.filled, .star-icon10.filled {
+		    background-image: url('https://velog.velcdn.com/images/jellykelly/post/10caf033-b0ef-4d58-804b-6e33395e4ea5/image.svg');
+		}
+		
+		.star-icon1 {
+		    background-position: 0% 0px;
+		}
+		.star-icon2 {
+		    background-position: 10% 0px;
+		}
+		.star-icon3 {
+		    background-position: 20% 0px;
+		}
+		.star-icon4 {
+		    background-position: 30% 0px;
+		}
+		.star-icon5 {
+		    background-position: 40% 0px;
+		}
+		.star-icon6 {
+		    background-position: 50% 0px;
+		}
+		.star-icon7 {
+		    background-position: 60% 0px;
+		}
+		.star-icon8 {
+		    background-position: 70% 0px;
+		}
+		.star-icon9 {
+		    background-position: 80% 0px;
+		}
+		.star-icon10 {
+		    background-position: 90% 0px;
+		}
 	</style>
     <jsp:include page="../include/head.jsp"></jsp:include>
 </head>
@@ -129,6 +186,10 @@
 			            	<img src="${path2 }/resources/upload/${product.img}" alt="${product.pname }">
 			            </a>
 			            <div class="product-name">${product.pname }</div>
+			            <input type="hidden" id="star-${product.pno }" name="star" value="${product.star }">
+			            <div class="rating" id="rating-${product.pno }">
+			            </div>
+			            <p>${product.star }점 (${product.rcnt }명)</p>
 			            <div class="product-price">${product.price }원</div>
 			        </div>
 			        </c:forEach>
@@ -138,11 +199,18 @@
 			        </c:if>
 			    </div>
 			    <c:if test="${sid.equals('admin') }">
-			 	<div style="margin:10px 0; margin-left:100px;">
-			    	<button class="add-product-btn" onclick="location.href='${path2}/product/insProduct.do'" style="margin:10px;">상품 등록</button>
-			    </div>
+				 	<div style="margin:10px 0; margin-left:100px;">
+				    	<button class="add-product-btn" onclick="location.href='${path2}/product/insProduct.do'" style="margin:10px;">상품 등록</button>
+				    </div>
 			    </c:if>
 			</div>
+			<script>
+			$(document).ready(function(){
+				<c:forEach var="dto" items="${productList}">
+			    	updateStars(${dto.pno});
+			    </c:forEach>
+			});
+			</script>
 			<div class="paginations-container">
 				<div class="paginations">
 			        <a href="?page=1" class="page-link">&lt;&lt;</a>
@@ -182,6 +250,29 @@
 		    		}
 		    	}
 		    </script>
+		    <script>
+				function updateStars(id) {
+					const ratingDiv = document.getElementById('rating-' + id);
+					const value = parseFloat(document.getElementById('star-' + id).value);
+					const totalStars = Math.floor(value * 10);
+					
+					ratingDiv.innerHTML = '';
+					
+					for(let i = 0; i<totalStars; i++) {
+						const starSpan = document.createElement('span');
+						starSpan.classList.add('star-icon' + ((i%10)+1));
+						starSpan.classList.add('filled');
+		                ratingDiv.appendChild(starSpan);
+					}
+					
+					for(let i = totalStars; i<50; i++) {
+						const starSpan = document.createElement('span');
+						starSpan.classList.add('star-icon' + ((i%10)+1));
+						ratingDiv.appendChild(starSpan);
+					}
+				}
+				
+			</script>
 		</section>	
 	</main>
 	<footer id="ft">

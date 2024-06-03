@@ -18,5 +18,5 @@ public class Review {
 	private String content;
 	private String img;
 	private String resdate;
-	private int star;
+	private float star;
 }

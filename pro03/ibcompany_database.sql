@@ -1,5 +1,6 @@
 create database ib;
 use ib;
+set sql_safe_updates=0;
 
 -- sample 테이블 생성
 create table sample (num int, title varchar(50), res datetime default current_timestamp);
@@ -74,10 +75,13 @@ id varchar(20),
 content varchar(2000),
 img varchar(300),
 resdate datetime default current_timestamp,
-star int,
+star float,
 foreign key(pno) references product(pno),
 foreign key(id) references member(id));
+select * from review;
 
+
+insert into review values(default, 5, 'admin', '별점 테스트용', 'testimg.png', default, 3);
 
 -- select pno, ROUND(AVG(star),1) as avgstar from review where pno=#{pno} group by pno;
 
@@ -85,7 +89,8 @@ foreign key(id) references member(id));
 -- product 테이블 생성
 create table product(pno int auto_increment primary key, 
 category varchar(20) not null, pname varchar(100) not null,
-com varchar(1000), price int default 1000, img varchar(300), img2 varchar(300), star float);
+com varchar(1000), price int default 1000, img varchar(300), img2 varchar(300), 
+star float default 0, rcnt int default 0);
 select * from product;
 
 alter table product add img2 varchar(300);

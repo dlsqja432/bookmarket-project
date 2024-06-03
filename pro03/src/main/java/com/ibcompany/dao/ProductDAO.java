@@ -16,5 +16,6 @@ public interface ProductDAO {
 	public Product getProduct(int pno);
 	public void insProduct(Product product);
 	public void upProduct(Product product);
+	public void upStar(Map<String, Object> paramMap);
 	public void delProduct(int pno);
 }

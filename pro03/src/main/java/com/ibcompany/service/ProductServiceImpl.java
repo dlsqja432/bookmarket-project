@@ -101,7 +101,7 @@ public class ProductServiceImpl implements ProductService {
 	public void upProduct(Product product) {
 		productDAO.upProduct(product);
 	}
-
+	
 	@Override
 	public void delProduct(int pno) {
 		productDAO.delProduct(pno);

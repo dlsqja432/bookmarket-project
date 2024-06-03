@@ -15,4 +15,6 @@ public class Product {
 	private int price;
 	private String img;
 	private String img2;
+	private float star;
+	private int rcnt;
 }

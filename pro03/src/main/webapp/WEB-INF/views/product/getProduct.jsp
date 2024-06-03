@@ -63,6 +63,7 @@
 				        </c:if>
 				        <div class="product-name">${product.pname }</div>
 				        <div class="product-price">${product.price }원</div>
+				        <div class="product-description">별점 : ${product.star }</div>
 				        <div class="product-description">${product.com }</div>
 			        </c:if>
 			        <c:if test="${empty product }">

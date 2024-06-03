@@ -42,6 +42,11 @@
 		update product set category=#{category}, pname=#{pname}, com=#{com}, price=#{price}, img=#{img}, img2=#{img2} where pno=#{pno}
 	</update>
 	
+	<!-- 별점 업데이트 -->
+	<update id="upStar" parameterType="map">
+		update product set star=#{star}, rcnt=rcnt+#{rcnt} where pno=#{pno}
+	</update>
+	
 	<!-- 상품 삭제 -->
 	<delete id="delProduct">
 		delete from product where pno=#{pno}

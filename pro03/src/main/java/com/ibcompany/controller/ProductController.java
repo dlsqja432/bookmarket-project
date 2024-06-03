@@ -2,6 +2,7 @@ package com.ibcompany.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -21,7 +22,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ibcompany.dto.Product;
+import com.ibcompany.dto.Review;
 import com.ibcompany.service.ProductService;
+import com.ibcompany.service.ReviewService;
 
 @Controller
 @RequestMapping("/product/")
@@ -31,12 +34,14 @@ public class ProductController {
 	
 	private ProductService productService;
 	private ServletContext servletContext;
+	private ReviewService reviewService;
 	private String uploadLoc = "/resources/upload";
 
 	@Autowired
-	public ProductController(ProductService productService, ServletContext servletContext) {
+	public ProductController(ProductService productService, ServletContext servletContext, ReviewService reviewService) {
 		this.servletContext = servletContext;
 		this.productService = productService;
+		this.reviewService = reviewService;
 	}
 	
 	@GetMapping("productList.do")
@@ -59,6 +64,8 @@ public class ProductController {
 	@GetMapping("getProduct.do")
 	public String getProduct(@RequestParam("pno") int pno, Model model) {
 		Product product = productService.getProduct(pno);
+		List<Review> productReviewList = reviewService.getProductReviewList(pno);
+		model.addAttribute("productReviewList", productReviewList);
 		model.addAttribute("product",product);
 		return "product/getProduct";
 	}
