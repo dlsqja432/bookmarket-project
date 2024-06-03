@@ -55,6 +55,10 @@ public class PagingBean {
 	public int getNowPage() {
 		return nowPage;
 	}
+	
+	public int getPageNumberPerPageGroup() {
+		return pageNumberPerPageGroup;
+	}
 
 	/**
 	 * 현재 페이지번호에 해당하는 시작 게시물의 row number를 반환 hint : 이전페이지의 마지막 번호 + 1 ((현재페이지-1)

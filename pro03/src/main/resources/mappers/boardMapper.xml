@@ -31,7 +31,7 @@
 	
 	<!-- 공지사항 조회수 증가 -->
 	<update id="upVcnt">
-		update board set vcnt=vcnt+1 where bno=#{bno}
+		update board set vcnt=vcnt-++1 where bno=#{bno}
 	</update>
 	
 	<!-- 공지사항 삭제 -->

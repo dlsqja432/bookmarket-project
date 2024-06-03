@@ -67,11 +67,25 @@ hits int default 0, resdate datetime default current_timestamp,
 author varchar(20));
 select * from fileboard;
 
+-- review 테이블 생성
+create table review(rno int auto_increment primary key,
+pno int,
+id varchar(20),
+content varchar(2000),
+img varchar(300),
+resdate datetime default current_timestamp,
+star int,
+foreign key(pno) references product(pno),
+foreign key(id) references member(id));
+
+
+-- select pno, ROUND(AVG(star),1) as avgstar from review where pno=#{pno} group by pno;
+
 
 -- product 테이블 생성
 create table product(pno int auto_increment primary key, 
 category varchar(20) not null, pname varchar(100) not null,
-com varchar(1000), price int default 1000, img varchar(300), img2 varchar(300));
+com varchar(1000), price int default 1000, img varchar(300), img2 varchar(300), star float);
 select * from product;
 
 alter table product add img2 varchar(300);
@@ -81,6 +95,7 @@ insert into product values(default, 'snack', 'THE 빠새 청양마요맛', 'hait
 insert into product values(default, 'candy', '연양갱 고구마', 'haitai', 1200, 'candy01_list.png', 'candy01.png');
 insert into product values(default, 'choco', '프로틴 너티 클러스터', 'haitai', 1800, 'choco01_list.png', 'choco01.png');
 insert into product values(default, 'choco', '프로틴 너티 클러스터 초코', 'haitai', 2000, 'choco02_list.png', 'choco02.png');
+
 
 -- productvo view 생성
 create view productvo as (select p.pno as pno, p.category as category, 
@@ -109,7 +124,7 @@ avg(i.inprice) as inprice,
 max(i.outprice) as outprice, sum(i.amount) as amount, 
 i.remark as remark, max(i.resdate) as resdate 
 from inventory i, product p where i.pno=p.pno group by i.ino, i.pno, p.pname,i.remark);
-select * from inventoryvo;
+select * from inventoryvo where pno=11;
 
 
 -- sales 테이블 생성

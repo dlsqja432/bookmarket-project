@@ -11,13 +11,19 @@
 	</select>
 	
 	<!-- 카테고리별 상품 목록 -->
-	<select id="getCategoryList" resultType="com.ibcompany.dto.Product">
-		select * from product where category=#{category} order by pno desc;
+	<select id="getCategoryList" parameterType="map" resultType="com.ibcompany.dto.Product">
+		select * from product where category=#{category} order by pno desc
+		limit #{startRowNumber}, #{contentNumberPerPage}
 	</select>
 	
 	<!-- 총 상품 수 -->
 	<select id="maxNum" resultType="int">
 		select count(*) from product
+	</select>
+	
+	<!-- 카테고리별 총 상품 수 -->
+	<select id="categoryMaxNum" resultType="int">
+		select count(*) from product where category=#{category}
 	</select>
 	
 	<!-- 상품 상세 보기 -->	

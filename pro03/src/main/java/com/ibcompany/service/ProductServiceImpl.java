@@ -16,6 +16,12 @@ public class ProductServiceImpl implements ProductService {
 
 	private ProductDAO productDAO;
 	
+	//페이지당 게시물 수
+	private int contentNumberPerPage = 4;
+	
+	//페이지 그룹 당 페이지 수
+	private int pageNumberPerPageGroup = 3;
+	
 	@Autowired
 	public ProductServiceImpl(ProductDAO productDAO) {
 		this.productDAO = productDAO;
@@ -27,12 +33,6 @@ public class ProductServiceImpl implements ProductService {
 		
 		//총 게시물 수
 		int totalContents = productDAO.maxNum();
-		
-		//페이지당 게시물 수
-		int contentNumberPerPage = 2;
-		
-		//페이지 그룹 당 페이지 수
-		int pageNumberPerPageGroup = 3;
 		
 		//PagingBean 생성
 		PagingBean pagingBean = new PagingBean(totalContents, nowPage, contentNumberPerPage, pageNumberPerPageGroup);
@@ -51,14 +51,41 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> getCategoryList(String category) {
-		return productDAO.getCategoryList(category);
+	public Map<String, Object> getCategoryList(int nowPage, String category) {
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		//총 게시물 수
+		int totalContents = productDAO.categoryMaxNum(category);
+		
+		//PagingBean 생성
+		PagingBean pagingBean = new PagingBean(totalContents, nowPage, contentNumberPerPage, pageNumberPerPageGroup);
+		
+		//페이징을 위한 파라미터 설정
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("category", category);
+		paramMap.put("startRowNumber", pagingBean.getStartRowNumber() - 1);
+		paramMap.put("contentNumberPerPage", contentNumberPerPage);
+		
+		//게시물 리스트 조회
+		List<Product> categoryList = productDAO.getCategoryList(paramMap);
+		
+		resultMap.put("category", category);
+		resultMap.put("categoryList", categoryList);
+		resultMap.put("pagingBean", pagingBean);
+		
+		return resultMap;
 	}
 
 	@Override
 	public int maxNum() {
 		return productDAO.maxNum();
 	}
+	
+	@Override
+	public int categoryMaxNum(String category) {
+		return productDAO.categoryMaxNum(category);
+	}
+
 
 	@Override
 	public Product getProduct(int pno) {

@@ -2,7 +2,6 @@ package com.ibcompany.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -49,9 +48,11 @@ public class ProductController {
 	}
 	
 	@GetMapping("categoryList.do")
-	public String categoryList(@RequestParam("category") String category, Model model) {
-		List<Product> categoryList = productService.getCategoryList(category);
-		model.addAttribute("categoryList",categoryList);
+	public String categoryList(@RequestParam String category, @RequestParam(defaultValue = "1") int page, Model model) {
+		Map<String, Object> resultMap = productService.getCategoryList(page, category);
+		model.addAttribute("category", category);
+		model.addAttribute("categoryList",resultMap.get("categoryList"));
+		model.addAttribute("pagingBean", resultMap.get("pagingBean"));
 		return "product/" + category + "List";
 	}
 	

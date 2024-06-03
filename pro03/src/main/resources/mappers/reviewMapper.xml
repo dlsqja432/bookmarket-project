@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+"-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review">
+
+	<!-- 리뷰 전체 목록 -->
+	<select id="getReviewList" resultType="com.ibcompany.dto.Review">
+		select * from review order by rno desc 
+	</select>
+	
+	<!-- 상품 별 리뷰 목록 -->
+	<select id="getProductReviewList" resultType="com.ibcompany.dto.Review">
+		select * from review where pno=#{pno} order by rno desc
+	</select>
+	
+	<!-- 총 리뷰 수 -->
+	<select id="reviewCount" resultType="int">
+		select count(*) from review
+	</select>
+	
+	<!-- 상품 별 별점 평균 -->
+	<select id="avgStar" resultType="int">
+		select ROUND(AVG(star),1) as avgstar from review where pno=#{pno} group by pno;
+	</select> 
+	
+	<!-- 리뷰 상세 보기 -->
+	<select id="getReview" resultType="com.ibcompany.dto.Review">
+		select * from review where rno=#{rno}
+	</select>
+	
+	<!-- 리뷰 등록 -->
+	<insert id="insReview">
+		insert into review(pno, id, content, img, star) values (#{pno}, #{id}, #{img}, #{content}, #{star})
+	</insert>
+	
+	<!-- 리뷰 변경 -->
+	<update id="upReview">
+		update review set content=#{content}, img=#{img}, star=#{star} where rno=#{rno}
+	</update>
+	
+	<!-- 리뷰 삭제 -->
+	<delete id="delReview">
+		delete from review where rno=#{rno}
+	</delete>
+</mapper>

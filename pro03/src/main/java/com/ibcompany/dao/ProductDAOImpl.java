@@ -1,5 +1,6 @@
 package com.ibcompany.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,13 +26,18 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public List<Product> getCategoryList(String category) {
-		return sqlSession.selectList("product.getCategoryList", category);
+	public List<Product> getCategoryList(Map<String, Object> paramMap) {
+		return sqlSession.selectList("product.getCategoryList", paramMap);
 	}
 
 	@Override
 	public int maxNum() {
 		return sqlSession.selectOne("product.maxNum");
+	}
+	
+	@Override
+	public int categoryMaxNum(String category) {
+		return sqlSession.selectOne("product.categoryMaxNum", category);
 	}
 
 	@Override

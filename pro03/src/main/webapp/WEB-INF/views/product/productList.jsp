@@ -52,6 +52,19 @@
         .add-product-btn:hover {
             background: linear-gradient(to right, #45A049, #4CAF50);
         }
+        .add-product-btn-checked {
+            background: linear-gradient(to right, #2196F3, #1E88E5);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .add-product-btn-checked:hover {
+            background: linear-gradient(to right, #1E88E5, #2196F3);
+        }
         
         <!-- 페이지 버튼 -->
         .paginations-container {
@@ -102,7 +115,7 @@
 		<section class="page clr-fix" id="page1">
 			<div class="page-wrap">
 				<div style="margin:10px 0; margin-left:100px;">
-					<a href="${path2 }/product/productList.do"><button class="add-product-btn">ALL</button></a>
+					<a href="${path2 }/product/productList.do"><button class="add-product-btn-checked">ALL</button></a>
 					<a href="${path2 }/product/categoryList.do?category=snack"><button class="add-product-btn">스낵</button></a>
 					<a href="${path2 }/product/categoryList.do?category=choco"><button class="add-product-btn">초코</button></a>
 					<a href="${path2 }/product/categoryList.do?category=candy"><button class="add-product-btn">캔디</button></a>
@@ -148,23 +161,22 @@
 			        <a href="?page=${pagingBean.getTotalPage()}" class="page-link">&gt;&gt;</a>
 			    </div>
 		    </div>
-		    <button onclick="goToNextPageGroup()"> >> </button> <!-- 다음 페이지 그룹으로 이동하는 버튼 -->
 		    <script>
-		    	var pagesPerPageGroup = 3; //페이지 그룹 당 페이지 수
-		    	var totalPages = ${pagingBean.getTotalPage()}; //전체 페이지 수
-		    	var currentPage = ${pagingBean.getNowPage()}; //현재 페이지
+		    	var pageNumberPerPageGroup = ${pagingBean.getPageNumberPerPageGroup()}; //페이지 그룹 당 페이지 수
+		    	var totalPage = ${pagingBean.getTotalPage()}; //전체 페이지 수
+		    	var nowPage = ${pagingBean.getNowPage()}; //현재 페이지
 		    	var startPageOfPageGroup = ${pagingBean.getStartPageOfPageGroup()}; //현재 페이지 그룹의 시작 페이지
 		    	
 		    	//페이지 그룹 이동 함수
 		    	function goToNextPageGroup() {
-		    		var nextPageGroupStart = startPageOfPageGroup + pagesPerPageGroup; //다음 페이지 그룹의 시작 페이지
-		    		if(nextPageGroupStart <= totalPages) {
+		    		var nextPageGroupStart = startPageOfPageGroup + pageNumberPerPageGroup; //다음 페이지 그룹의 시작 페이지
+		    		if(nextPageGroupStart <= totalPage) {
 		    			window.location.href = "?page=" + nextPageGroupStart; //다음 페이지 그룹으로 이동
 		    		}
 		    	}
 		    	
 		    	function goToPreviousPageGroup() {
-		    		var previousPageGroupStart = startPageOfPageGroup - pagesPerPageGroup;
+		    		var previousPageGroupStart = startPageOfPageGroup - pageNumberPerPageGroup;
 		    		if(previousPageGroupStart >= 1) {
 		    			window.location.href = "?page=" + previousPageGroupStart;
 		    		}
