@@ -7,6 +7,7 @@ import com.ibcompany.dto.Review;
 public interface ReviewService {
 	public List<Review> getReviewList();
 	public List<Review> getProductReviewList(int pno);
+	public Review getReview(int rno);
 	public float avgStar(int pno);
 	public int productReviewCount(int pno);
 	public int reviewCount();

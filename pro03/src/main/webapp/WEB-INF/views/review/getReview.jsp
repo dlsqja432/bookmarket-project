@@ -55,10 +55,9 @@
 		.text-content {
 		    margin-left: 20px; 
 		}
-		
-		.star-icon1, .star-icon2, .star-icon3, .star-icon4, .star-icon5, .star-icon6,
-		.star-icon7, .star-icon8, .star-icon9, .star-icon10 {
-		    width: 4px;
+			
+		.star-icon-left, .star-icon-right {
+		    width: 20px;
 		    height: 40px;
 		    display: block;
 		    position: relative;
@@ -68,41 +67,16 @@
 		    background-size: 40px;
 		}
 		
-		.star-icon1.filled, .star-icon2.filled, .star-icon3.filled, .star-icon4.filled,
-		.star-icon5.filled, .star-icon6.filled, .star-icon7.filled, .star-icon8.filled,
-		.star-icon9.filled, .star-icon10.filled {
+		.star-icon-left.filled, .star-icon-right.filled {
 		    background-image: url('https://velog.velcdn.com/images/jellykelly/post/10caf033-b0ef-4d58-804b-6e33395e4ea5/image.svg');
 		}
 		
-		.star-icon1 {
-		    background-position: 0% 0px;
+		.star-icon-right {
+		    background-position: right;
 		}
-		.star-icon2 {
-		    background-position: 10% 0px;
-		}
-		.star-icon3 {
-		    background-position: 20% 0px;
-		}
-		.star-icon4 {
-		    background-position: 30% 0px;
-		}
-		.star-icon5 {
-		    background-position: 40% 0px;
-		}
-		.star-icon6 {
-		    background-position: 50% 0px;
-		}
-		.star-icon7 {
-		    background-position: 60% 0px;
-		}
-		.star-icon8 {
-		    background-position: 70% 0px;
-		}
-		.star-icon9 {
-		    background-position: 80% 0px;
-		}
-		.star-icon10 {
-		    background-position: 90% 0px;
+		
+		.star-icon-left {
+		    background-position: left;
 		}
 	</style>
     <jsp:include page="../include/head.jsp"></jsp:include>
@@ -118,38 +92,30 @@
 		<section class="page clr-fix" id="page1">
 			<div class="page-wrap">
 				<div class="product-detail">
-					<c:if test="${not empty product }">
+					<c:if test="${not empty review }">
 				        <img src="${path2 }/resources/upload/${product.img2}" alt="${product.pname }">
 				        <c:if test="${sid.equals('admin') }">
 				        <div class="product-name">상품번호 : ${product.pno }</div>
 				        </c:if>
 				        <div class="product-name">${product.pname }</div>
 				        <div class="product-price">${product.price }원</div>
-				        <input type="hidden" id="star" name="star" value="${product.star }">
+				        <input type="hidden" id="star" name="star" value="${review.star }">
 				        <div class="ratingContainer">
 				            <div class="rating" id="rating"></div>
 				            <div class="text-content">
-						        ${product.star }점 (${product.rcnt }명)
+						        ${review.star }점
 						    </div>
 			            </div> 
-				        <div class="product-description">${product.com }</div>
+				        <div class="product-description">${review.content }</div>
 			        </c:if>
-			        <c:if test="${empty product }">
-			        	<p>상품을 찾을 수 없습니다.</p>
+			        <c:if test="${empty review }">
+			        	<p>리뷰를 찾을 수 없습니다.</p>
 			        </c:if>
-			        <c:if test="${sid.equals('admin') }">
-				        <a href="${path2 }/product/editProduct.do?pno=${product.pno }" class="button is-warning">상품 수정</a>
-				        <a href="${path2 }/product/delProduct.do?pno=${product.pno }" class="button is-danger is-dark">상품 삭제</a>
+			        <c:if test="${sid.equals(review.id) or sid.equals('admin') }">
+				        <a href="${path2 }/review/editReview.do?rno=${review.rno }" class="button is-warning">리뷰 수정</a>
+				        <a href="${path2 }/review/delReview.do?rno=${review.rno }" class="button is-danger is-dark">리뷰 삭제</a>
 			        </c:if>
-			        <c:if test="${not empty memb }">
-			        	<a href="${path2 }/sales/insSales.do?pno=${product.pno}" class="button is-success">상품 구매</a>
-			        </c:if>
-			        <c:if test="${empty memb }">
-			        	<a href="${path2 }/member/login.do">
-			        		<button type="button" class="button is-success" onclick="fnc()">상품 구매</button>
-			        	</a>
-			        </c:if>
-			        <a href="${path2 }/product/productList.do" class="button is-warning">상품 목록</a>
+			        <a href="${path2 }/review/reviewList.do" class="button is-warning">리뷰 목록</a>
 			    </div>
 			    <script>
 			    	function fnc() {
@@ -159,20 +125,29 @@
 			    <script>
 				    const ratingDiv = document.getElementById('rating');
 					const value = parseFloat(document.getElementById('star').value);
-					const totalStars = Math.floor(value * 10);
+					const totalStars = Math.floor(value * 2);
 					
 					ratingDiv.innerHTML = '';
 					
 					for(let i = 0; i<totalStars; i++) {
 						const starSpan = document.createElement('span');
-						starSpan.classList.add('star-icon' + ((i%10)+1));
+						if(i % 2 == 0) {
+							starSpan.classList.add('star-icon-left');
+						} else {
+		                    starSpan.classList.add('star-icon-right');
+		                }
+						
 						starSpan.classList.add('filled');
 		                ratingDiv.appendChild(starSpan);
 					}
 					
-					for(let i = totalStars; i<50; i++) {
+					for(let i = totalStars; i<10; i++) {
 						const starSpan = document.createElement('span');
-						starSpan.classList.add('star-icon' + ((i%10)+1));
+						if(i % 2 == 0) {
+							starSpan.classList.add('star-icon-left');
+						} else {
+		                    starSpan.classList.add('star-icon-right');
+		                }
 						ratingDiv.appendChild(starSpan);
 					}
 				</script>

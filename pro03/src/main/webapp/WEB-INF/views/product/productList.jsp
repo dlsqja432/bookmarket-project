@@ -187,8 +187,7 @@
 			            </a>
 			            <div class="product-name">${product.pname }</div>
 			            <input type="hidden" id="star-${product.pno }" name="star" value="${product.star }">
-			            <div class="rating" id="rating-${product.pno }">
-			            </div>
+			            <div class="rating" id="rating-${product.pno }"></div>
 			            <p>${product.star }점 (${product.rcnt }명)</p>
 			            <div class="product-price">${product.price }원</div>
 			        </div>

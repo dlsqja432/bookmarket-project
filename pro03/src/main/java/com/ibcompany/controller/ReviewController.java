@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ibcompany.dto.Product;
 import com.ibcompany.dto.Review;
@@ -21,10 +22,12 @@ import com.ibcompany.service.ReviewService;
 public class ReviewController {
 	
 	private ReviewService reviewService;
+	private ProductService productService;
 	
 	@Autowired
-	public ReviewController(ReviewService reviewService) {
+	public ReviewController(ReviewService reviewService, ProductService productService) {
 		this.reviewService = reviewService;
+		this.productService = productService;
 	}
 	
 	@GetMapping("reviewList.do")
@@ -51,6 +54,15 @@ public class ReviewController {
 		reviewService.insReview(review);
 		
 		return "redirect:reviewList.do";
+	}
+	
+	@GetMapping("getReview.do")
+	public String getReview(@RequestParam("rno") int rno, Model model) {
+		Review review = reviewService.getReview(rno);
+		Product product = productService.getProduct(review.getPno());
+		model.addAttribute("review", review);
+		model.addAttribute("product", product);
+		return "review/getReview";
 	}
 }
 

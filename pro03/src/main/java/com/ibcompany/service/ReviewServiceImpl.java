@@ -32,6 +32,11 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<Review> getProductReviewList(int pno) {
 		return reviewDAO.getProductReviewList(pno);
 	}
+	
+	@Override
+	public Review getReview(int rno) {
+		return reviewDAO.getReview(rno);
+	}
 
 	@Override
 	public float avgStar(int pno) {

@@ -12,6 +12,8 @@
 	<title>공지사항 목록</title>
 	<jsp:include page="../include/head.jsp"></jsp:include>
 	<style>
+	#tb1 { width:1260px; }
+	
 	.rating {
 	    float: none;
 	    width: 200px;
@@ -81,14 +83,14 @@
 								<tr>
 									<td>${fn:length(reviewList) - status.count + 1 }</td>
 									<td>
-										<strong>${dto.content }</strong>
+										<a href="${path2 }/review/getReview.do?rno=${dto.rno}"><strong>${dto.content }</strong></a>
 										<input type="hidden" id="star-${dto.rno }" name="star" value="${dto.star }">
 									</td>
 									<td>
 										<div class="rating" id="rating-${dto.rno }">
 									    </div>
 									</td>
-									<td>${dto.pno }</td>
+									<td><a href="${path2 }/product/getProduct.do?pno=${dto.pno}">${dto.pno }</a></td>
 									<td>${dto.id }</td>
 								</tr>
 								</c:forEach>
@@ -102,10 +104,6 @@
 					</table>
 					<script>
 					$(document).ready(function(){
-						$("#tb1").DataTable({
-							order:[[0,"desc"]]
-						});
-						
 						<c:forEach var="dto" items="${reviewList}">
 					    	updateStars(${dto.rno});
 					    </c:forEach>

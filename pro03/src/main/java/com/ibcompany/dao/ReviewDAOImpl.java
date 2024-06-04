@@ -29,6 +29,11 @@ public class ReviewDAOImpl implements ReviewDAO {
 	}
 	
 	@Override
+	public Review getReview(int rno) {
+		return sqlSession.selectOne("review.getReview", rno);
+	}
+	
+	@Override
 	public float avgStar(int pno) {
 		return sqlSession.selectOne("review.avgStar", pno);
 	}
