@@ -24,6 +24,7 @@
     	<div class="container">
     		<jsp:include page="../include/hd.jsp"></jsp:include>
     	</div>
+    	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     </header>
     <main id="contents" class="contents">
     	<div id="breadcrumb" class="container breadcrumb-wrap clr-fix" style="height:60px; line-height:60px;">
